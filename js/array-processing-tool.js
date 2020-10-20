@@ -56,7 +56,7 @@ const arrayTool = {
             startMax = 0,
             stopMax = 0;
         for(let i = 0; i < array.length - 1; i++){
-            if( array[i+1] <= array[i] && i - startIndex >= stopMax - startMax){
+            if(array[i+1] <= array[i] && i+1 - startIndex >= stopMax - startMax){
                 startMax = startIndex;
                 stopMax = i+1;
 
@@ -64,6 +64,6 @@ const arrayTool = {
             }
         }
 
-        return array.slice(startMax, stopMax);
+        return stopMax - startMax > 1 ? array.slice(startMax, stopMax) : [] ;
     }
 };
