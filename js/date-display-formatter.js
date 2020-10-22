@@ -9,12 +9,19 @@ const dateDisplayFormatter = {
         return date.toLocaleString(locale, options);
     },
 
-    convertToCustomFormat(stringDate, dateFormat, resultFormat){
+    convertToCustomFormat(stringDate, dateFormat, resultFormat, isNumericMonth = true){
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
         const date = this.getDate(stringDate, dateFormat);
 
+        console.log(date);
+
         let result = resultFormat.replace(/[Y]{4}/, date.getFullYear());
-        result = result.replace(/[M]{2}/, date.getMonth().toString());
-        result = result.replace(/[D]{2}/, date.getDay().toString());
+        const month = isNumericMonth ? date.getMonth() < 9 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString() : monthNames[date.getMonth()];
+        const day = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate().toString();
+        result = result.replace(/[M]{2}/, month);
+        result = result.replace(/[D]{2}/, day);
         return result;
     },
 
@@ -24,37 +31,26 @@ const dateDisplayFormatter = {
     },
 
     getDate(date, dateFormat){
-        const tryGetFormat = date => {
-            for(let reg of this.formats.values()){
-                const searchResults = date.match(reg);
-
-                if(searchResults){
-                    return reg;
-                }
-            }
-        }
-
         if(typeof date === "number"){
             return new Date(date);
         }
         else if(typeof date === "string"){
-            let format;
             if(!dateFormat){
-                format = tryGetFormat(date);
-                if(!format){
-                    return null;
+                for(let reg of this.formats.values()){
+                    const searchResults = date.match(reg);
+
+                    if(searchResults){
+                        return new Date(searchResults[0].replace(reg, "$<year>-$<month>-$<day>"));
+                    }
                 }
+                return null;
             }
             else{
-                let format = this.formats.get(dateFormat);
-                if(!format){
-                    return null;
-                }
-            }
+                const year = date.slice(dateFormat.indexOf("Y"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("Y")),
+                    month = date.slice(dateFormat.indexOf("M"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("M")),
+                    day = date.slice(dateFormat.indexOf("D"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("D"));
 
-            const searchResults = date.match(format);
-            if(searchResults){
-                return new Date(searchResults[0].replace(format, "$<year>-$<month>-$<day>"));
+                    return new Date(parseInt(year), (parseInt(month)-1), parseInt(day));
             }
         }
         return null;
@@ -96,7 +92,8 @@ const dateDisplayFormatter = {
 }
 
 dateDisplayFormatter.formats = new Map();
-dateDisplayFormatter.formats.set("YYYYMMDD", /(?<year>[0-9]{4})(?<month>[0-9]{2})(?<day>[0-9]{2})/);
+dateDisplayFormatter.formats.set("DDMMYYYY", /(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})/);
+dateDisplayFormatter.formats.set("DD MM YYYY", /(?<day>[0-9]{2}) (?<month>[0-9]{2}) (?<year>[0-9]{4})/);
 dateDisplayFormatter.formats.set("YYYY-MM-DD", /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/);
 dateDisplayFormatter.formats.set("MM-DD-YYYY", /(?<month>[0-9]{2})-(?<day>[0-9]{2})-(?<year>[0-9]{4})/);
 dateDisplayFormatter.formats.set("MM/DD/YYYY", /(?<month>[0-9]{2})\/(?<day>[0-9]{2})\/(?<year>[0-9]{4})/);
