@@ -15,7 +15,14 @@ describe("2. date formatter", function() {
         });
 
         it("'MM-DD-YYYY' format of '20130431'['YYYYMMDD'] = '04-31-2013'", function() {
-            assert.equal(dateDisplayFormatter.convertToCustomFormat("20130431", "YYYYMMDD","MM-DD-YYYY"), "05-01-2013");
+            assert.equal(dateDisplayFormatter.convertToCustomFormat("20130331", "YYYYMMDD","MM-DD-YYYY"), "03-31-2013");
         });
+    });
+
+    describe("fromNow", function() {
+        it("'2013-04-31' from now = '8 years ago'", function() {
+            assert.equal(dateDisplayFormatter.fromNow('2013-03-31', "YYYY-MM-DD"), "8 years ago");
+        });
+
     });
 });

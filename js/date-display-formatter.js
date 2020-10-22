@@ -15,7 +15,10 @@ const dateDisplayFormatter = {
         ];
         const date = this.getDate(stringDate, dateFormat);
 
-        console.log(date);
+
+        if(!(date instanceof Date) || isNaN(date)){
+            throw Error("invalid date");
+        }
 
         let result = resultFormat.replace(/[Y]{4}/, date.getFullYear());
         const month = isNumericMonth ? date.getMonth() < 9 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString() : monthNames[date.getMonth()];
@@ -31,6 +34,17 @@ const dateDisplayFormatter = {
     },
 
     getDate(date, dateFormat){
+
+        // it is acceptable to write "new Date(2013, 3, 31)" and get 1 May 2013,
+        // this does not suit me, here I brush aside these cases
+        const dateCheck = (dateObj, year, month, day) => {
+            if(dateObj && parseInt(month) === dateObj.getMonth() + 1 && parseInt(day) === dateObj.getDate()){
+                return true;
+            }
+
+            return false;
+        }
+
         if(typeof date === "number"){
             return new Date(date);
         }
@@ -40,20 +54,27 @@ const dateDisplayFormatter = {
                     const searchResults = date.match(reg);
 
                     if(searchResults){
-                        return new Date(searchResults[0].replace(reg, "$<year>-$<month>-$<day>"));
+                        const dateObj = new Date(searchResults[0].replace(reg, "$<year>-$<month>-$<day>"));
+                        if(dateCheck(dateObj, searchResults.groups.year, searchResults.groups.month, searchResults.groups.day)){
+                            return dateObj;
+                        }
                     }
                 }
-                return null;
             }
             else{
                 const year = date.slice(dateFormat.indexOf("Y"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("Y")),
                     month = date.slice(dateFormat.indexOf("M"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("M")),
                     day = date.slice(dateFormat.indexOf("D"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("D"));
 
-                    return new Date(parseInt(year), (parseInt(month)-1), parseInt(day));
+                    const dateObj = new Date(parseInt(year), parseInt(month)-1, parseInt(day));
+
+                    if(dateCheck(dateObj, year, month, day)){
+                        return dateObj;
+                    }
             }
         }
-        return null;
+
+        throw Error("invalid date");
     },
 
     timespanToHumanString(startDate, endDate) {

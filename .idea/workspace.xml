@@ -31,10 +31,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/tests/date-formatter-tests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/date-display-formatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/date-display-formatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/tests/date-formatter-tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/tests/date-formatter-tests.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,8 @@
       <workItem from="1603262352562" duration="3104000" />
       <workItem from="1603287934561" duration="13868000" />
       <workItem from="1603307241428" duration="6014000" />
-      <workItem from="1603364855707" duration="4834000" />
+      <workItem from="1603364855707" duration="5162000" />
+      <workItem from="1603385676461" duration="2443000" />
     </task>
     <servers />
   </component>
