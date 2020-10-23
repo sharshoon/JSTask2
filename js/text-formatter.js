@@ -5,7 +5,7 @@ const textFormatter = {
             return text.split("").map(character => character + "\n").join("");
         }
         else if(lineBreakStyle === "word"){
-            return text.split(" ").map(word => word + "\n").join(" ");
+            return text.split(" ").map(word => word + "\n").join("");
         }
         else if(lineBreakStyle === "sentence"){
             const sentences = text.split(".");
@@ -25,7 +25,7 @@ const textFormatter = {
                 resultText += newLine.trim() + "." + "\n";
             }
 
-            return resultText;
+            return resultText.trim();
         }
         else if(lineBreakStyle === "none"){
             if(maxLineLength === Infinity){
@@ -45,9 +45,12 @@ const textFormatter = {
                     newLine = word + " ";
                 }
             }
-            resultText += newLine.trim() ? newLine : "";
 
-            return resultText;
+            if(newLine.trim()){
+                resultText += newLine;
+            }
+
+            return resultText.trim();
         }
     }
 }
