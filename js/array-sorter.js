@@ -13,32 +13,23 @@ const arraySorter = {
         return resultArray;
     },
 
-    quickSort(sourceArray, leftBorder = 0, rightBorder = sourceArray.length - 1, ascending = true){
-        let array = sourceArray.slice();
-
-        const separation = (array, pivot, leftBorder, rightBorder) => {
-            let separationIndex = leftBorder;
-
-            for(let i = leftBorder; i < rightBorder; i++){
-                if(array[i] < array[pivot]){
-                    [array[i], array[separationIndex]] = [array[separationIndex], array[i]];
-                    separationIndex++;
-                }
-            }
-           [array[rightBorder], array[separationIndex]] = [array[separationIndex], array[rightBorder]];
-           return separationIndex;
-        };
-
-        let pivot,
-            separationIndex;
-
-        if(leftBorder < rightBorder){
-            pivot = rightBorder;
-            separationIndex = separation(array, pivot, leftBorder, rightBorder);
-            this.quickSort(array, leftBorder, separationIndex - 1);
-            this.quickSort(array, separationIndex + 1, rightBorder);
+    quickSort(array, leftBorder = 0, rightBorder = array.length - 1){
+        if (array.length < 2) {
+            return array;
         }
-        return array;
+
+        let pivot = array[0];
+        const left = [],
+            right = [];
+
+        for (let i = 1; i < array.length; i++) {
+            if (pivot > array[i]) {
+                left.push(array[i]);
+            } else {
+                right.push(array[i]);
+            }
+        }
+        return this.quickSort(left).concat(pivot, this.quickSort(right));
     },
 
     heapSort(sourceArray){
