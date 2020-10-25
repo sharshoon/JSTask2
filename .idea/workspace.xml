@@ -25,11 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/tests/text-formatter-tests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/tests/array-sorter-tests.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/tests/array-processing-tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/tests/array-processing-tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/text-formatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/text-formatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/array-sorter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/array-sorter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +77,8 @@
       <workItem from="1603364855707" duration="5162000" />
       <workItem from="1603385676461" duration="2443000" />
       <workItem from="1603471824719" duration="5079000" />
+      <workItem from="1603638762520" duration="1512000" />
+      <workItem from="1603651828802" duration="5724000" />
     </task>
     <servers />
   </component>
