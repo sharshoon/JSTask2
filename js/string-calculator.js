@@ -15,7 +15,7 @@ const stringCalculator = {
     },
 
     getNumbers(expression){
-        return  expression.match(/\d+(.?\d+)?/g).map(num => num.includes(".") ? parseFloat(num) : parseInt(num));
+        return expression.match(/\d+(\.\d+)?/g).map(num => num.includes(".") ? parseFloat(num) : parseInt(num));
     },
 
     getOperations(arr1, arr2){
