@@ -1,4 +1,4 @@
-describe("arrayTool", function() {
+describe("1. arrayTool", function() {
     describe("getMaxSubSumO1", function() {
         it("maximum sum of continuous subarray [-1, 2, 3, -9] = 5", function() {
             assert.equal(arrayTool.getMaxSubSumO1([-1, 2, 3, -9]), 5);
