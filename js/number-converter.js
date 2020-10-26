@@ -3,7 +3,7 @@ const numberConverter = {
         let result = 0,
             rank = 1;
         for(let i = 0; i < number.length; i++) {
-            result += number[i] === "1" ? rank : 0;
+            result += number[i] == 1 ? rank : 0;
             rank *= 2;
         }
         return result;
@@ -46,8 +46,9 @@ const numberConverter = {
             }
         }
 
-        const number = sourceNumber.split("").map(item => {
+        const number = sourceNumber.reverse().map(numberElement => {
             // convert char to int
+            let item = numberElement.toString();
             if(item.charCodeAt(0) >= '0'.charCodeAt(0) &&  item.charCodeAt(0) <= '9'.charCodeAt(0) &&
                 (item.charCodeAt(0) - '0'.charCodeAt(0) < sourceNotation)){
                 return item.charCodeAt(0) - '0'.charCodeAt(0);
