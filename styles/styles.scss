@@ -28,7 +28,9 @@
         margin: auto;
         background-color: #dedede;
         width: 50%;
-        height: 2rem;
+        height: auto;
+        min-height: 1   rem;
+        padding: 0.5rem;
         border-radius: 0.15rem;
         margin-bottom: 1rem;
         font-family: "Courier New", Courier, monospace;
