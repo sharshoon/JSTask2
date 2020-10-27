@@ -10,9 +10,7 @@ const cachingCalculator = {
             return {result, source};
         }
         else{
-            if(this.cache.size >= this.maxCacheLength){
-                this.cache.delete(this.cache.keys().next().value);
-            }
+            this.checkCacheLoad();
             result = stringCalculator.calculate(stringExpression);
             this.cache.set(stringExpression, result);
             source = "calculator"; 
@@ -21,8 +19,18 @@ const cachingCalculator = {
     },
     addExpressionToCache(expression){
         if(!this.cache.has(expression)){
+            this.checkCacheLoad();
+
             const result = stringCalculator.calculate(expression);
             this.cache.set(expression, result);
+        }
+    },
+
+    checkCacheLoad(){
+        if(this.cache.size > this.maxCacheLength - 1){
+            while(this.cache.size !== (this.maxCacheLength - 1)){
+                this.cache.delete(this.cache.keys().next().value);
+            }
         }
     }
 }

@@ -1,14 +1,9 @@
 const stringCalculator = {
     calculate(expression){
         const numbers = this.getNumbers(expression);
-        console.log(numbers);
         const operators = this.getOperators(expression, numbers);
-        console.log(operators, "operators");
         let operations = this.getOperations(numbers, operators);
-
-        console.log(operations);
         operations = this.executePriorityOperations(operations);
-        console.log(operations);
         return this.sumOrSubItems(operations);
     },
 
@@ -19,8 +14,6 @@ const stringCalculator = {
         }
 
         const consIndexes = numbers.map( (number, index) => number < 0 ? index : -1);
-
-        console.log(consIndexes, "consIndexes");
 
         for(let i = 0; i < consIndexes.length; i++){
             if(consIndexes[i] === 0){

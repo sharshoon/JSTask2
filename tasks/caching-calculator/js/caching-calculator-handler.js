@@ -13,11 +13,11 @@ function handleCachingCalculator(expressionClass, resultContainerClass){
 }
 
 function handleSetCacheLength(lengthClass, resultContainerClass){
-    const length = document.getElementsByClassName(lengthClass)[0].value;
+    const length = parseInt(document.getElementsByClassName(lengthClass)[0].value);
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
-        if(length <= 0){
+        if(isNaN(length) && length <= 0){
             throw new Error("Invalid cache length")
         }
         const result = cachingCalculator.maxCacheLength = length;
