@@ -21,8 +21,17 @@
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/array-sorter/js/array-sorter-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-sorter/js/array-sorter-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-processing-tool/array-processing-tool.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/array-processing-tool.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-processing-tool.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-processing-tool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-tool-form-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-tool-form-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-sorter/array-sorter.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-sorter/array-sorter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/array-sorter/js/array-sorter.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-sorter/js/array-sorter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/caching-calculator/caching-calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/caching-calculator/caching-calculator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/date-formatter/date-formatter.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/date-formatter/date-formatter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/string-calculator/string-calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/string-calculator/string-calculator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/text-formatter/text-formatter.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/text-formatter/text-formatter.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +91,7 @@
       <workItem from="1603651828802" duration="5724000" />
       <workItem from="1603691389144" duration="13476000" />
       <workItem from="1603715135340" duration="935000" />
-      <workItem from="1603785086869" duration="3384000" />
+      <workItem from="1603785086869" duration="5940000" />
     </task>
     <servers />
   </component>

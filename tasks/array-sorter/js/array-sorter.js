@@ -1,7 +1,5 @@
 const arraySorter = {
-    test : 32,
     bubbleSort(array, ascending = true){
-        console.log(this.test);
         const resultArray = array.slice();
 
         let comparisonExpression = ascending ? (a,b) => {return a > b} : (a,b) => {return a < b};
