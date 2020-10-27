@@ -20,10 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tasks/array-processing-tool/array-processing-tool.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/array-processing-tool.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/array-processing-tool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/caching-calculator/js/dist/caching-calculator-handler.dev.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/caching-calculator/js/dist/caching-calculator.dev.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +41,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -83,6 +83,7 @@
       <workItem from="1603651828802" duration="5724000" />
       <workItem from="1603691389144" duration="13476000" />
       <workItem from="1603715135340" duration="935000" />
+      <workItem from="1603785086869" duration="313000" />
     </task>
     <servers />
   </component>
@@ -110,10 +111,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603262571540" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1603705348867">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1603785333575">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1603705348867" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1603290459503" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1603785333575" />
   </component>
 </project>
