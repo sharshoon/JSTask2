@@ -13,23 +13,28 @@ const arraySorter = {
         return resultArray;
     },
 
-    quickSort(array, leftBorder = 0, rightBorder = array.length - 1){
-        if (array.length < 2) {
-            return array;
-        }
-
-        let pivot = array[0];
-        const left = [],
-            right = [];
-
-        for (let i = 1; i < array.length; i++) {
-            if (pivot > array[i]) {
-                left.push(array[i]);
-            } else {
-                right.push(array[i]);
+    quickSort(sourceArray){
+        function quickSortInner(array){
+            if (array.length < 2) {
+                return array;
             }
+
+            let pivot = array[0];
+            const left = [],
+                right = [];
+
+            for (let i = 1; i < array.length; i++) {
+                if (pivot > array[i]) {
+                    left.push(array[i]);
+                } else {
+                    right.push(array[i]);
+                }
+            }
+            return quickSortInner(left).concat(pivot, quickSortInner(right));
         }
-        return arraySorter.quickSort(left).concat(pivot, arraySorter.quickSort(right));
+
+        const array = sourceArray.slice();
+        return quickSortInner(array);
     },
 
     heapSort(sourceArray){

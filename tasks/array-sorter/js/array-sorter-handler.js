@@ -11,6 +11,7 @@ function handleArraySorter(e){
     const resultContainer = document.getElementsByClassName("array-sorter__result-container")[0];
 
     try{
+        
         const result = algorithms.get(algorithm)(array);
         if(!result || (Array.isArray(result) && result.includes(NaN))){
             throw new Error("Invalid array");
