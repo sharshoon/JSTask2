@@ -11,5 +11,17 @@ describe("4. string calculator", function() {
         it("1/0", function() {
             assert.equal(stringCalculator.calculate("1/0"), "Infinity");
         });
+
+        it("-2+2", function() {
+            assert.equal(stringCalculator.calculate("-2+2"), "0");
+        });
+
+        it("2+-5*2", function() {
+            assert.equal(stringCalculator.calculate("2+-5*2"), "-8");
+        });
+
+        it("-2-2-2-2-2-2-2-2-2-2-2-2-2", function() {
+            assert.equal(stringCalculator.calculate("-2-2-2-2-2-2-2-2-2-2-2-2-2"), "-26");
+        });
     });
 });

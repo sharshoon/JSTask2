@@ -1,6 +1,6 @@
 const arraySorter = {
     bubbleSort(array, ascending = true){
-        let resultArray = array.slice();
+        const resultArray = array.slice();
 
         let comparisonExpression = ascending ? (a,b) => {return a > b} : (a,b) => {return a < b};
         for (let i = 0; i < resultArray.length; i++) {
@@ -13,28 +13,33 @@ const arraySorter = {
         return resultArray;
     },
 
-    quickSort(array, leftBorder = 0, rightBorder = array.length - 1){
-        if (array.length < 2) {
-            return array;
-        }
-
-        let pivot = array[0];
-        const left = [],
-            right = [];
-
-        for (let i = 1; i < array.length; i++) {
-            if (pivot > array[i]) {
-                left.push(array[i]);
-            } else {
-                right.push(array[i]);
+    quickSort(sourceArray){
+        function quickSortInner(array){
+            if (array.length < 2) {
+                return array;
             }
+
+            let pivot = array[0];
+            const left = [],
+                right = [];
+
+            for (let i = 1; i < array.length; i++) {
+                if (pivot > array[i]) {
+                    left.push(array[i]);
+                } else {
+                    right.push(array[i]);
+                }
+            }
+            return quickSortInner(left).concat(pivot, quickSortInner(right));
         }
-        return arraySorter.quickSort(left).concat(pivot, arraySorter.quickSort(right));
+
+        const array = sourceArray.slice();
+        return quickSortInner(array);
     },
 
     heapSort(sourceArray){
-        let array = sourceArray.slice();
-        let maxHeap = (input, i, arrayLength) => {
+        const array = sourceArray.slice();
+        const maxHeap = (input, i, arrayLength) => {
             const leftBorder = 2 * i + 1,
                 rightBorder = 2 * i + 2;
             let max = i;
@@ -47,7 +52,7 @@ const arraySorter = {
             }
             if (max !== i){
                 [input[i], input[max]] = [input[max], input[i]];
-                maxHeap(input, max);
+                maxHeap(input, max, arrayLength);
             }
         }
 
@@ -66,7 +71,7 @@ const arraySorter = {
     },
 
     insertionSort(sourceArray) {
-        let array = sourceArray.slice(),
+        const array = sourceArray.slice(),
             length = sourceArray.length;
         for (let i = 1; i < length; i++) {
             let currentElement = array[i],
@@ -81,8 +86,8 @@ const arraySorter = {
     },
 
     selectionSort(sourceArray) {
-        let array = sourceArray.slice(),
-            min,
+        const array = sourceArray.slice();
+        let min,
             length = sourceArray.length;
 
         for(let i = 0; i < length; i++){

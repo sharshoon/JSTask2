@@ -1,5 +1,9 @@
 const arrayTool = {
     getMaxSubSumO1(array) {
+        if(array.length === 0){
+            return 0;
+        }
+
         let maxSum = 0,
             sum = 0;
 
@@ -14,6 +18,10 @@ const arrayTool = {
     },
 
     getMaxSubSumO2(array){
+        if(array.length === 0){
+            return 0;
+        }
+
         let options = [];
         for(let i = 0; i < array.length; i++){
             let sum = 0;
@@ -33,14 +41,24 @@ const arrayTool = {
     },
 
     findMax(array){
-        return Math.max(...array);
+        if(array.length === 0){
+            return 0;
+        }
+        return array.reduce((accumulator, element) => accumulator < element ? element : accumulator, Number.MIN_SAFE_INTEGER);
     },
 
     findMin(array){
-        return Math.min(...array);
+        if(array.length === 0){
+            return 0;
+        }
+        return array.reduce((accumulator, element) => accumulator > element ? element : accumulator, Number.MAX_SAFE_INTEGER);
     },
 
     findMedian(array){
+        if(array.length === 0){
+            return 0;
+        }
+
         const sortedArray = array.sort();
 
         if(array.length % 2 === 1){
@@ -52,6 +70,10 @@ const arrayTool = {
     },
 
     maxAscendingSequence(array){
+        if(array.length === 0){
+            return [];
+        }
+
         let startIndex = 0,
             startMax = 0,
             stopMax = 0;
@@ -64,6 +86,9 @@ const arrayTool = {
             }
         }
 
+        if(stopMax === 0){
+            stopMax = array.length;
+        }
         return stopMax - startMax > 1 ? array.slice(startMax, stopMax) : [] ;
     }
 };

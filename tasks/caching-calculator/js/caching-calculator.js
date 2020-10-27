@@ -1,3 +1,4 @@
+// Proxy pattern over string calculator
 const cachingCalculator = {
     maxCacheLength : 10,
     calculate(stringExpression) {

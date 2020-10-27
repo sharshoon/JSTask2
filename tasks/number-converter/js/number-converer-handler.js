@@ -1,6 +1,6 @@
-function handleBinToDecConverter(e){
-    const number = document.getElementsByClassName("bin-to-dec__input")[0].value.split(",");
-    const resultContainer = document.getElementsByClassName("bin-to-dec__result-container")[0];
+function handleBinToDecConverter(numberClass, resultContainerClass){
+    const number = document.getElementsByClassName(numberClass)[0].value.split(",");
+    const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
         const result = numberConverter.binaryToDecimal(number);
@@ -14,9 +14,9 @@ function handleBinToDecConverter(e){
     }
 }
 
-function handleDecToBinConverter(e){
-    const number = document.getElementsByClassName("dec-to-bin__input")[0].value.split(",");
-    const resultContainer = document.getElementsByClassName("dec-to-bin__result-container")[0];
+function handleDecToBinConverter(numberClass, resultContainerClass){
+    const number = document.getElementsByClassName(numberClass)[0].value.split(",");
+    const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
         const result = numberConverter.decimalToBinary(number);
@@ -30,11 +30,11 @@ function handleDecToBinConverter(e){
     }
 }
 
-function handleCustomConverter(e){
-    const number = document.getElementsByClassName("custom-converter__input")[0].value.split(",");
-    const sourceNotation = document.getElementsByClassName("custom-converter__input-source-notation")[0].value;
-    const destNotation = document.getElementsByClassName("custom-converter__input-dest-notation")[0].value;
-    const resultContainer = document.getElementsByClassName("custom-converter__result-container")[0];
+function handleCustomConverter(numberClass, resultContainerClass,sourceNotationClass, destNotationClass){
+    const number = document.getElementsByClassName(numberClass)[0].value.split(",");
+    const sourceNotation = document.getElementsByClassName(sourceNotationClass)[0].value;
+    const destNotation = document.getElementsByClassName(destNotationClass)[0].value;
+    const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
         const result = numberConverter.customToCustom(number, sourceNotation, destNotation);
@@ -47,7 +47,3 @@ function handleCustomConverter(e){
         resultContainer.innerHTML = e.message;
     }
 }
-
-document.getElementsByClassName("custom-converter__button")[0].addEventListener("click", handleCustomConverter);
-document.getElementsByClassName("bin-to-dec__button")[0].addEventListener("click", handleBinToDecConverter);
-document.getElementsByClassName("dec-to-bin__button")[0].addEventListener("click", handleDecToBinConverter);

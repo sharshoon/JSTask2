@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,8 +11,9 @@
         mocha.setup('bdd');
         let assert = chai.assert;
     </script>
-    <link rel="stylesheet" type="text/css" href="../../styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
 </head>
+
 <body>
     <main class="task">
         <h1 class="task-name task__name">Text Formatter</h1>
@@ -19,16 +21,21 @@
             <h2 class="method__name">Format Text</h2>
             <div class="method__result text-formatter__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Text:</label><input class="method__input text-formatter__input-text" type="text" name="text-formatter-input-text" placeholder="text...">
-                <label>Max text length:</label><input class="method__input text-formatter__input-max-text" type="number" name="text-formatter-input-text" placeholder="10...">
-                <label>Max line length:</label><input class="method__input text-formatter__input-max-line" type="number" name="text-formatter-input-text" placeholder="10...">
+                <label>Text:</label><input class="method__input text-formatter__input-text" type="text" name="text-formatter-input-text" placeholder="text..." />
+                <label>Max text length (optional):</label><input class="method__input text-formatter__input-max-text" type="number" name="text-formatter-input-text" placeholder="10..." />
+                <label>Max line length (optional):</label><input class="method__input text-formatter__input-max-line" type="number" name="text-formatter-input-text" placeholder="10..." />
                 <select class="method__input text-formatter__select-mode">
                     <option value="character">Character by character</option>
                     <option value="word">Word by word</option>
                     <option value="sentence">Sentence by sentence</option>
                     <option value="none">None</option>
                 </select>
-                <input class="method__button text-formatter__button" type="submit" value="SUBMIT">
+                <input class="method__button text-formatter__button"
+                       type="submit"
+                       onclick="handleTextFormat('text-formatter__input-text', 'text-formatter__input-max-text',
+                       'text-formatter__input-max-line', 'text-formatter__select-mode', 'text-formatter__result-container')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
     </main>
@@ -40,4 +47,5 @@
         mocha.run();
     </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,8 +11,9 @@
         mocha.setup('bdd');
         let assert = chai.assert;
     </script>
-    <link rel="stylesheet" type="text/css" href="../../styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
 </head>
+
 <body>
     <main class="task">
         <h1 class="task-name task__name">Date Formatter</h1>
@@ -20,9 +22,13 @@
             <h2 class="method__name">Convert to ISO</h2>
             <div class="method__result iso-date__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Date:</label><input class="method__input iso-date__input-date"type="text" name="iso-date-input-date" placeholder="31102011...">
-                <label>RegExp:</label><input class="method__input iso-date__input-regexp"type="text" name="iso-date-input-regexp" placeholder="DDMMYYYY...">
-                <input class="method__button iso-date__button" type="submit" value="SUBMIT">
+                <label>Date:</label><input class="method__input iso-date__input-date" type="text" name="iso-date-input-date" placeholder="31102011..." />
+                <label>RegExp (optional):</label><input class="method__input iso-date__input-regexp" type="text" name="iso-date-input-regexp" placeholder="DDMMYYYY..." />
+                <input class="method__button iso-date__button"
+                       onclick="handleIsoDate('iso-date__input-date', 'iso-date__input-regexp', 'iso-date__result-container')"
+                       type="submit"
+                       value="SUBMIT"
+                />
             </div>
         </div>
 
@@ -30,8 +36,8 @@
             <h2 class="method__name">Convert to custom locale</h2>
             <div class="method__result date-custom-locale__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Date:</label><input class="method__input date-custom-locale__input-date"type="text" name="date-custom-locale-input-date" placeholder="31102011...">
-                <label>RegExp:</label><input class="method__input date-custom-locale__input-regexp"type="text" name="date-custom-locale-input-regexp" placeholder="DDMMYYYY...">
+                <label>Date:</label><input class="method__input date-custom-locale__input-date" type="text" name="date-custom-locale-input-date" placeholder="31102011..." />
+                <label>RegExp (optional):</label><input class="method__input date-custom-locale__input-regexp" type="text" name="date-custom-locale-input-regexp" placeholder="DDMMYYYY..." />
                 <select class="method__input date-custom-locale__select-locale">
                     <option value="ru-RU">Russian</option>
                     <option value="en-US">American</option>
@@ -43,7 +49,12 @@
                     <option value="string-month">String Month</option>
                     <option value="numeric-month">Numeric Month</option>
                 </select>
-                <input class="method__button date-custom-locale__button" type="submit" value="SUBMIT">
+                <input class="method__button date-custom-locale__button"
+                       onclick="handleCustomLocaleDate('date-custom-locale__input-date', 'date-custom-locale__input-regexp',
+                       'date-custom-locale__result-container', 'date-custom-locale__select-locale', 'date-custom-locale__select-options')"
+                       type="submit"
+                       value="SUBMIT"
+                />
             </div>
         </div>
 
@@ -51,15 +62,20 @@
             <h2 class="method__name">Convert to custom format</h2>
             <div class="method__result date-custom-format__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Date:</label><input class="method__input date-custom-format__input-date"type="text" name="date-custom-format-input-date" placeholder="31102011...">
-                <label>RegExp:</label><input class="method__input date-custom-format__input-regexp"type="text" name="date-custom-format-regexp" placeholder="DDMMYYYY...">
-                <label>Result date RegExp:</label><input class="method__input date-custom-format__result-regexp"type="text" name="date-custom-format-result-regexp" placeholder="MM-DD-YYYY...">
+                <label>Date:</label><input class="method__input date-custom-format__input-date" type="text" name="date-custom-format-input-date" placeholder="31102011..." />
+                <label>RegExp (optional):</label><input class="method__input date-custom-format__input-regexp" type="text" name="date-custom-format-regexp" placeholder="DDMMYYYY..." />
+                <label>Result date RegExp:</label><input class="method__input date-custom-format__result-regexp" type="text" name="date-custom-format-result-regexp" placeholder="MM-DD-YYYY..." />
                 <select class="method__input date-custom-format__select-options">
                     <option selected disabled>Choose options...</option>
                     <option value="string-month">String Month</option>
                     <option value="numeric-month">Numeric Month</option>
                 </select>
-                <input class="method__button date-custom-format__button" type="submit" value="SUBMIT">
+                <input class="method__button date-custom-format__button"
+                       type="submit"
+                       onclick="handleCustomFormatDate('date-custom-format__input-date', 'date-custom-format__input-regexp',
+                        'date-custom-format__result-container', 'date-custom-format__result-regexp', 'date-custom-format__select-options')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
 
@@ -67,9 +83,13 @@
             <h2 class="method__name">From Now</h2>
             <div class="method__result date-from-now__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Date:</label><input class="method__input date-from-now__input-date"type="text" name="date-from-now-input-date" placeholder="31102011...">
-                <label>RegExp:</label><input class="method__input date-from-now__input-regexp"type="text" name="date-from-now-input-regexp" placeholder="DDMMYYYY...">
-                <input class="method__button date-from-now__button" type="submit" value="SUBMIT">
+                <label>Date:</label><input class="method__input date-from-now__input-date" type="text" name="date-from-now-input-date" placeholder="31102011..." />
+                <label>RegExp (optional):</label><input class="method__input date-from-now__input-regexp" type="text" name="date-from-now-input-regexp" placeholder="DDMMYYYY..." />
+                <input class="method__button date-from-now__button"
+                       type="submit"
+                       onclick="handleDateFromNow('date-from-now__input-date', 'date-from-now__input-regexp', 'date-from-now__result-container')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
     </main>
@@ -81,4 +101,5 @@
         mocha.run();
     </script>
 </body>
+
 </html>

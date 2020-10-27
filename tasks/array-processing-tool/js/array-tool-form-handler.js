@@ -1,40 +1,54 @@
-function handleMaxSumO1(e){
-    const array = document.getElementsByClassName("max-sum1__input")[0].value.split(",").map(item => +item);
-    const resultContainer = document.getElementsByClassName("max-sum1__result-container")[0];
+function findDataElements(arrayClass, resultContainerClass){
+    let array = document.getElementsByClassName(arrayClass)[0].value;
+    array = array.trim() !== "" ? array.split(",").map(item => parseInt(item)) : [];
 
-    resultContainer.innerHTML = arrayTool.getMaxSubSumO1(array);
+    const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
+    console.log(array);
+    return {array, resultContainer};
 }
 
-function handleMaxSumO2(e){
-    const array = document.getElementsByClassName("max-sum2__input")[0].value.split(",").map(item => +item);
-    const resultContainer = document.getElementsByClassName("max-sum2__result-container")[0];
-
-    resultContainer.innerHTML = arrayTool.getMaxSubSumO2(array);
+function tryGetResult(method, array, resultContainer){
+    try {
+        if(array.some(element => isNaN(element))){
+            throw new Error("Invalid array");
+        }
+        const result = method(array);
+        if(!result && result !== 0){
+            throw new Error("Invalid array");
+        }
+        resultContainer.innerHTML = result;
+    }
+    catch (e){
+        resultContainer.innerHTML = e.message;
+    }
 }
 
-function handleFindMax(e){
-    const array = document.getElementsByClassName("find-max__input")[0].value.split(",").map(item => +item);
-    const resultContainer = document.getElementsByClassName("find-max__result-container")[0];
-
-    resultContainer.innerHTML = arrayTool.findMax(array);
+function handleMaxSumO1(arrayClass, resultContainerClass){
+    const dataElements = findDataElements(arrayClass, resultContainerClass);
+    tryGetResult(arrayTool.getMaxSubSumO1.bind(arrayTool), dataElements.array, dataElements.resultContainer);
 }
 
-function handleFindMin(e){
-    const array = document.getElementsByClassName("find-min__input")[0].value.split(",").map(item => +item);
-    const resultContainer = document.getElementsByClassName("find-min__result-container")[0];
-
-    resultContainer.innerHTML = arrayTool.findMin(array);
+function handleMaxSumO2(arrayClass, resultContainerClass){
+    const dataElements = findDataElements(arrayClass, resultContainerClass);
+    tryGetResult(arrayTool.getMaxSubSumO2.bind(arrayTool), dataElements.array, dataElements.resultContainer);
 }
 
-function handleFindMedian(e){
-    const array = document.getElementsByClassName("find-median__input")[0].value.split(",").map(item => +item);
-    const resultContainer = document.getElementsByClassName("find-median__result-container")[0];
-
-    resultContainer.innerHTML = arrayTool.findMedian(array);
+function handleFindMax(arrayClass, resultContainerClass){
+    const dataElements = findDataElements(arrayClass, resultContainerClass);
+    tryGetResult(arrayTool.findMax.bind(arrayTool), dataElements.array, dataElements.resultContainer);
 }
 
-document.getElementsByClassName("max-sum1__button")[0].addEventListener("click", handleMaxSumO1);
-document.getElementsByClassName("max-sum2__button")[0].addEventListener("click", handleMaxSumO2);
-document.getElementsByClassName("find-max__button")[0].addEventListener("click", handleFindMax);
-document.getElementsByClassName("find-min__button")[0].addEventListener("click", handleFindMin);
-document.getElementsByClassName("find-median__button")[0].addEventListener("click", handleFindMedian);
+function handleFindMin(arrayClass, resultContainerClass){
+    const dataElements = findDataElements(arrayClass, resultContainerClass);
+    tryGetResult(arrayTool.findMin.bind(arrayTool), dataElements.array, dataElements.resultContainer);
+}
+
+function handleFindMedian(arrayClass, resultContainerClass){
+    const dataElements = findDataElements(arrayClass, resultContainerClass);
+    tryGetResult(arrayTool.findMedian.bind(arrayTool), dataElements.array, dataElements.resultContainer);
+}
+
+function handleMaxSequence(arrayClass, resultContainerClass){
+    const dataElements = findDataElements(arrayClass, resultContainerClass);
+    tryGetResult(arrayTool.maxAscendingSequence.bind(arrayTool), dataElements.array, dataElements.resultContainer);
+}

@@ -1,18 +1,14 @@
-function handleArraySorter(e){
-    const algorithms = new Map();
-    algorithms.set("bubble-sort", arraySorter.bubbleSort);
-    algorithms.set("quick-sort", arraySorter.quickSort);
-    algorithms.set("heap-sort", arraySorter.heapSort);
-    algorithms.set("insertion-sort", arraySorter.insertionSort);
-    algorithms.set("selection-sort", arraySorter.selectionSort);
-
-    const array = document.getElementsByClassName("array-sorter__input")[0].value.split(",").map(item => +item);
-    const algorithm = document.getElementsByClassName("array-sorter__select-algorithm")[0].value;
-    const resultContainer = document.getElementsByClassName("array-sorter__result-container")[0];
+function handleArraySorter(arrayClass, algorithmClass, resultContainerClass){
+    const array = document.getElementsByClassName(arrayClass)[0].value.split(",").map(item => parseInt(item));
+    const algorithm = document.getElementsByClassName(algorithmClass)[0].value;
+    const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
         const result = algorithms.get(algorithm)(array);
-        if(!result || (Array.isArray(result) && result.includes(NaN))){
+        if(!result){
+            throw new Error("Invalid array");
+        }
+        if(array.some(element => isNaN(element))){
             throw new Error("Invalid array");
         }
         resultContainer.innerHTML = result;
@@ -22,4 +18,9 @@ function handleArraySorter(e){
     }
 }
 
-document.getElementsByClassName("array-sorter__button")[0].addEventListener("click", handleArraySorter);
+const algorithms = new Map();
+algorithms.set("bubble-sort", arraySorter.bubbleSort.bind(arraySorter));
+algorithms.set("quick-sort", arraySorter.quickSort.bind(arraySorter));
+algorithms.set("heap-sort", arraySorter.heapSort.bind(arraySorter));
+algorithms.set("insertion-sort", arraySorter.insertionSort.bind(arraySorter));
+algorithms.set("selection-sort", arraySorter.selectionSort.bind(arraySorter));

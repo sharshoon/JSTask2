@@ -1,27 +1,24 @@
-.task{
+.task {
     width: 80%;
     margin: auto;
-
-    &__name{
+    &__name {
         text-align: center;
     }
 }
 
-.task-name{
+.task-name {
     color: #2b2b2b;
 }
 
-.method{
+.method {
     position: relative;
     padding-bottom: 2rem;
-    
-    &__name{
+    &__name {
         text-align: center;
         width: 100%;
         color: #5c5c5c;
     }
-
-    &__result{
+    &__result {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -36,8 +33,7 @@
         font-family: "Courier New", Courier, monospace;
         text-align: center;
     }
-
-    &__input-wrapper{
+    &__input-wrapper {
         margin: auto;
         padding-bottom: 1rem;
         width: 30%;
@@ -45,8 +41,7 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-
-    &__input{
+    &__input {
         width: 100%;
         height: 1.5rem;
         border: 0;
@@ -54,14 +49,12 @@
         border: 0.05rem solid #a5a5a5;
         border-radius: 0.15rem;
         margin-bottom: 1rem;
-
         &:focus,
-        &:active{
+        &:active {
             outline: none;
         }
     }
-
-    &__button{
+    &__button {
         width: 50%;
         height: 2rem;
         border: 0;
@@ -69,8 +62,7 @@
         background-color: #4d4d4d;
         color: white;
     }
-
-    &::after{
+    &::after {
         content: "";
         position: absolute;
         bottom: 0;
@@ -80,7 +72,36 @@
     }
 }
 
-#mocha{
+.links-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.links-wrapper__links {
+    width: 50%;
+}
+
+.link-wrapper {
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    background-color: #dedede;
+    margin: 1rem;
+    border-radius: 0.1rem;
+}
+
+.link {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+}
+
+#mocha {
     display: flex;
     justify-content: center;
 }

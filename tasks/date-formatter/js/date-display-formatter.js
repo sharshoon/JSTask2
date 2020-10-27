@@ -3,6 +3,7 @@ const dateDisplayFormatter = {
         const date = this.getDate(stringDate, dateFormat);
         let month = date.getMonth() + 1;
         month = month <= 9 ? "0" + month : month;
+
         return `${date.getFullYear()}-${month}-${date.getDate()}`
     },
 
@@ -17,14 +18,14 @@ const dateDisplayFormatter = {
         ];
         const date = this.getDate(stringDate, dateFormat);
 
-
         if(!(date instanceof Date) || isNaN(date)){
             throw Error("invalid date");
         }
 
-        let result = resultFormat.replace(/[Y]{4}/, date.getFullYear());
         const month = isNumericMonth ? date.getMonth() < 9 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString() : monthNames[date.getMonth()];
         const day = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate().toString();
+
+        let result = resultFormat.replace(/[Y]{4}/, date.getFullYear());
         result = result.replace(/[M]{2}/, month);
         result = result.replace(/[D]{2}/, day);
         return result;
@@ -35,7 +36,7 @@ const dateDisplayFormatter = {
         return this.timespanToHumanString(date, Date.now());
     },
 
-    getDate(date, dateFormat){
+    getDate(sourceDate, sourceDateFormat){
         // it is acceptable to write "new Date(2013, 3, 31)" and get 1 May 2013,
         // this does not suit me, here I brush aside these cases
         const dateCheck = (dateObj, year, month, day) => {
@@ -46,10 +47,14 @@ const dateDisplayFormatter = {
             return false;
         }
 
+        const date = sourceDate ? sourceDate.trim() : sourceDate,
+            dateFormat = sourceDateFormat ? sourceDateFormat.trim() : sourceDateFormat;
         if(typeof date === "number"){
             return new Date(date);
         }
         else if(typeof date === "string"){
+            // If the user has not specified the form of the entered date,
+            // we will try to recognize it using the built-in templates in the 'formats' dictionary
             if(!dateFormat){
                 for(let reg of this.formats.values()){
                     const searchResults = date.match(reg);
@@ -67,12 +72,22 @@ const dateDisplayFormatter = {
                 const year = date.slice(dateFormat.indexOf("Y"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("Y")),
                     month = date.slice(dateFormat.indexOf("M"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("M")),
                     day = date.slice(dateFormat.indexOf("D"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("D"));
-                    const dateObj = new Date(`${parseInt(year)}-${parseInt(month)}-${parseInt(day)}`);
-                    if(dateCheck(dateObj, year, month, day)){
-                        return dateObj;
-                    }
+                const dateObj = new Date(`${parseInt(year)}-${parseInt(month)}-${parseInt(day)}`);
+                if(dateCheck(dateObj, year, month, day)){
+                    return dateObj;
+                }
+            }
+
+            // if user enter ticks to to the text input
+            // There may be a situation when the user entered 30062020 and meant that this is a date string,
+            // So I am handling it here after I made sure the input data cannot be processed as a string
+            const ticks = parseInt(date);
+            if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
+                console.log(ticks, date);
+                return new Date(ticks);
             }
         }
+
 
         throw Error("invalid date");
     },
@@ -113,9 +128,9 @@ const dateDisplayFormatter = {
 }
 
 dateDisplayFormatter.formats = new Map();
-dateDisplayFormatter.formats.set("DDMMYYYY", /(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})/);
-dateDisplayFormatter.formats.set("DD MM YYYY", /(?<day>[0-9]{2}) (?<month>[0-9]{2}) (?<year>[0-9]{4})/);
-dateDisplayFormatter.formats.set("DD.MM.YYYY", /(?<day>[0-9]{2}).(?<month>[0-9]{2}).(?<year>[0-9]{4})/);
-dateDisplayFormatter.formats.set("YYYY-MM-DD", /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/);
-dateDisplayFormatter.formats.set("MM-DD-YYYY", /(?<month>[0-9]{2})-(?<day>[0-9]{2})-(?<year>[0-9]{4})/);
-dateDisplayFormatter.formats.set("MM/DD/YYYY", /(?<month>[0-9]{2})\/(?<day>[0-9]{2})\/(?<year>[0-9]{4})/);
+dateDisplayFormatter.formats.set("DDMMYYYY", /^(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})$/);
+dateDisplayFormatter.formats.set("DD MM YYYY", /^(?<day>[0-9]{2}) (?<month>[0-9]{2}) (?<year>[0-9]{4})$/);
+dateDisplayFormatter.formats.set("DD.MM.YYYY", /^(?<day>[0-9]{2}).(?<month>[0-9]{2}).(?<year>[0-9]{4})$/);
+dateDisplayFormatter.formats.set("YYYY-MM-DD", /^(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})$/);
+dateDisplayFormatter.formats.set("MM-DD-YYYY", /^(?<month>[0-9]{2})-(?<day>[0-9]{2})-(?<year>[0-9]{4})$/);
+dateDisplayFormatter.formats.set("MM/DD/YYYY", /^(?<month>[0-9]{2})\/(?<day>[0-9]{2})\/(?<year>[0-9]{4})$/);

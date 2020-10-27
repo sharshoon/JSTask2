@@ -1,21 +1,50 @@
 const stringCalculator = {
     calculate(expression){
-        const operators = this.getOperators(expression);
         const numbers = this.getNumbers(expression);
-        let operations = numbers > operators
-            ? this.getOperations(numbers, operators)
-            : this.getOperations(operators, numbers);
+        console.log(numbers);
+        const operators = this.getOperators(expression, numbers);
+        console.log(operators, "operators");
+        let operations = this.getOperations(numbers, operators);
+
+        console.log(operations);
         operations = this.executePriorityOperations(operations);
+        console.log(operations);
         return this.sumOrSubItems(operations);
     },
 
-    getOperators(expression){
+    getOperators(expression, numbers){
         const operators = expression.match(/[*/+-]/g);
-        return operators ? operators : [];
+        if(!operators){
+            return [];
+        }
+
+        const consIndexes = numbers.map( (number, index) => number < 0 ? index : -1);
+
+        console.log(consIndexes, "consIndexes");
+
+        for(let i = 0; i < consIndexes.length; i++){
+            if(consIndexes[i] === 0){
+                operators.shift();
+            }
+            else if(consIndexes[i] !== -1){
+                operators.splice(consIndexes[i],1);
+            }
+        }
+
+        return operators;
     },
 
     getNumbers(expression){
-        return expression.match(/\d+(\.\d+)?/g).map(num => num.includes(".") ? parseFloat(num) : parseInt(num));
+        const numbers = expression.match(/([-+*\/]-)?\d+(\.\d+)?/g).map(num => {
+            const number = num.match(/(-)?\d+(\.\d+)?/)[0];
+            return num.includes(".") ? parseFloat(number) : parseInt(number)
+        });
+
+        if(expression && expression[0] === '-'){
+            numbers[0] = -numbers[0];
+        }
+
+        return numbers;
     },
 
     getOperations(arr1, arr2){
@@ -32,12 +61,11 @@ const stringCalculator = {
 
         return result
     },
-
     // performs multiplication and division
     executePriorityOperations(sourceOperations){
-        let operations = sourceOperations.slice();
-        let multiplicationIndex = operations.indexOf('*');
-        let divisionIndex = operations.indexOf('/');
+        const operations = sourceOperations.slice();
+        const multiplicationIndex = operations.indexOf('*');
+        const divisionIndex = operations.indexOf('/');
 
         if(multiplicationIndex !== -1 || divisionIndex !== -1){
             let operation,
@@ -60,8 +88,8 @@ const stringCalculator = {
 
     // performs addition and subtraction
     sumOrSubItems(sourceOperations){
-        let operations = sourceOperations.slice(),
-            result = operations[0];
+        const operations = sourceOperations.slice();
+        let result = operations[0];
 
         let i = 1;
         while(i < operations.length){
