@@ -32,9 +32,11 @@
   border-radius: 0.15rem;
   margin-bottom: 1rem;
   font-family: "Courier New", Courier, monospace;
+  text-align: center;
 }
 .method__input-wrapper {
   margin: auto;
+  padding-bottom: 1rem;
   width: 30%;
   display: flex;
   justify-content: center;
