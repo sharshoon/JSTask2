@@ -4,7 +4,6 @@ function handleStringCalculator(expressionClass, resultContainerClass){
 
     try{
         const result = stringCalculator.calculate(expression);
-
         resultContainer.innerHTML = result;
     }
     catch(e){

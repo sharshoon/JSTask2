@@ -58,6 +58,7 @@ const arrayTool = {
         if(array.length === 0){
             return 0;
         }
+
         const sortedArray = array.sort();
 
         if(array.length % 2 === 1){

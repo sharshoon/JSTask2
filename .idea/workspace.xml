@@ -21,12 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/caching-calculator/js/caching-calculator-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/caching-calculator/js/caching-calculator-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/caching-calculator/js/caching-calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/caching-calculator/js/caching-calculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-processing-tool.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-processing-tool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-tool-form-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-tool-form-handler.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/string-calculator/js/string-calculator-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/string-calculator/js/string-calculator-handler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/string-calculator/js/string-calculator-tests.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/string-calculator/js/string-calculator-tests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/string-calculator/js/string-calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/string-calculator/js/string-calculator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/string-calculator/string-calculator.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/string-calculator/string-calculator.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,12 +118,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603807439060" />
-    <state x="539" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1603810882146">
+    <state x="539" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1603813114651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1603705348867" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1603785333575" />
-    <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603810882146" />
+    <state x="539" y="183" width="840" height="856" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603813114651" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/JSTask2$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1603197622605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
