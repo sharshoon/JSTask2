@@ -5,10 +5,6 @@ function handleStringCalculator(expressionClass, resultContainerClass){
     try{
         const result = stringCalculator.calculate(expression);
 
-        if(!result){
-            throw new Error();
-        }
-
         resultContainer.innerHTML = result;
     }
     catch(e){

@@ -5,10 +5,6 @@ function handleCachingCalculator(expressionClass, resultContainerClass){
     try{
         const result = cachingCalculator.calculate(expression);
 
-        if(!result){
-            throw new Error("Invalid exception");
-        }
-
         resultContainer.innerHTML = `${result.result}<br/>Source: ${result.source}`;
     }
     catch(e){
