@@ -29,7 +29,7 @@ const arraySorter = {
                 right.push(array[i]);
             }
         }
-        return this.quickSort(left).concat(pivot, this.quickSort(right));
+        return arraySorter.quickSort(left).concat(pivot, arraySorter.quickSort(right));
     },
 
     heapSort(sourceArray){

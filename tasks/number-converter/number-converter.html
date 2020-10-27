@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        mocha.setup('bdd');
+        let assert = chai.assert;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css"/>
+</head>
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">Number Converter</h1>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Binary to Decimal</h2>
+            <div class="method__result bin-to-dec__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Number</label><input class="method__input bin-to-dec__input"type="text" name="bin-to-dec-input" placeholder="5,1">
+                <input class="method__button bin-to-dec__button" type="submit" value="SUBMIT">
+            </div>
+        </div>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Decimal to binary</h2>
+            <div class="method__result dec-to-bin__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Number</label><input class="method__input dec-to-bin__input"type="text" name="dec-to-bin-input" placeholder="5,1">
+                <input class="method__button dec-to-bin__button" type="submit" value="SUBMIT">
+            </div>
+        </div>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Custom to custom</h2>
+            <div class="method__result custom-converter__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Number</label><input class="method__input custom-converter__input"type="text" name="custom-converter-input" placeholder="5,1">
+                <label>Source Notation</label><input class="method__input custom-converter__input-source-notation"type="text" name="custom-converter-input-source-notation" placeholder="10">
+                <label>Dest Notation</label><input class="method__input custom-converter__input-dest-notation"type="text" name="custom-converter-input-dest-notation" placeholder="16">
+                <input class="method__button custom-converter__button" type="submit" value="SUBMIT">
+            </div>
+        </div>
+    </main>
+    <script src="js/number-converter.js"></script>
+    <script src="js/number-converer-handler.js"></script>
+    <script src="js/number-converter-tests.js"></script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+</html>

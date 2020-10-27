@@ -1,7 +1,9 @@
 const dateDisplayFormatter = {
     convertToISO(stringDate, dateFormat){
         const date = this.getDate(stringDate, dateFormat);
-        return date.toISOString().slice(0,10);
+        let month = date.getMonth() + 1;
+        month = month <= 9 ? "0" + month : month;
+        return `${date.getFullYear()}-${month}-${date.getDate()}`
     },
 
     formatToCustomLocale(stringDate, dateFormat, locale, options){
@@ -34,7 +36,6 @@ const dateDisplayFormatter = {
     },
 
     getDate(date, dateFormat){
-
         // it is acceptable to write "new Date(2013, 3, 31)" and get 1 May 2013,
         // this does not suit me, here I brush aside these cases
         const dateCheck = (dateObj, year, month, day) => {
@@ -54,7 +55,8 @@ const dateDisplayFormatter = {
                     const searchResults = date.match(reg);
 
                     if(searchResults){
-                        const dateObj = new Date(searchResults[0].replace(reg, "$<year>-$<month>-$<day>"));
+                        const dateObj = new Date(searchResults[0]
+                            .replace(reg, `${parseInt(searchResults.groups.year)}-${parseInt(searchResults.groups.month)}-${searchResults.groups.day}`));
                         if(dateCheck(dateObj, searchResults.groups.year, searchResults.groups.month, searchResults.groups.day)){
                             return dateObj;
                         }
@@ -65,9 +67,7 @@ const dateDisplayFormatter = {
                 const year = date.slice(dateFormat.indexOf("Y"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("Y")),
                     month = date.slice(dateFormat.indexOf("M"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("M")),
                     day = date.slice(dateFormat.indexOf("D"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("D"));
-
-                    const dateObj = new Date(parseInt(year), parseInt(month)-1, parseInt(day));
-
+                    const dateObj = new Date(`${parseInt(year)}-${parseInt(month)}-${parseInt(day)}`);
                     if(dateCheck(dateObj, year, month, day)){
                         return dateObj;
                     }
@@ -115,6 +115,7 @@ const dateDisplayFormatter = {
 dateDisplayFormatter.formats = new Map();
 dateDisplayFormatter.formats.set("DDMMYYYY", /(?<day>[0-9]{2})(?<month>[0-9]{2})(?<year>[0-9]{4})/);
 dateDisplayFormatter.formats.set("DD MM YYYY", /(?<day>[0-9]{2}) (?<month>[0-9]{2}) (?<year>[0-9]{4})/);
+dateDisplayFormatter.formats.set("DD.MM.YYYY", /(?<day>[0-9]{2}).(?<month>[0-9]{2}).(?<year>[0-9]{4})/);
 dateDisplayFormatter.formats.set("YYYY-MM-DD", /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/);
 dateDisplayFormatter.formats.set("MM-DD-YYYY", /(?<month>[0-9]{2})-(?<day>[0-9]{2})-(?<year>[0-9]{4})/);
 dateDisplayFormatter.formats.set("MM/DD/YYYY", /(?<month>[0-9]{2})\/(?<day>[0-9]{2})\/(?<year>[0-9]{4})/);

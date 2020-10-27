@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css"/>
+</head>
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">Caching Calculator</h1>
+
+        <div class="method iso-date">
+            <h2 class="method__name">Calculate</h2>
+            <div class="method__result caching-calculator__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Expression:</label><input class="method__input caching-calculator__input-string" type="text" name="caching-calculator-input-string" placeholder="2+2...">
+                <input class="method__button caching-calculator__button" type="submit" value="SUBMIT">
+            </div>
+            
+            <div class="method__result caching-calculator__cache-length-container"></div>
+            <div class="method__input-wrapper">
+                <label>Max Cache Length:</label><input class="method__input caching-calculator__input-cache-length" type="number" name="caching-calculator-input-length" placeholder="10...">
+                <input class="method__button caching-calculator__cache-length-button" type="submit" value="SUBMIT">
+            </div>
+
+            <div class="method__result caching-calculator__cache-container"></div>
+            <div class="method__input-wrapper">
+                <label>Add expression to cache:</label><input class="method__input caching-calculator__input-cache" type="text" name="caching-calculator-input-length" placeholder="3+3">
+                <input class="method__button caching-calculator__cache-button" type="submit" value="SUBMIT">    
+            </div>
+        </div>
+    </main>
+    <script src="js/caching-calculator.js"></script>
+    <script src="../string-calculator/js/string-calculator.js"></script>
+    <script src="js/caching-calculator-handler.js"></script>
+</body>
+</html>

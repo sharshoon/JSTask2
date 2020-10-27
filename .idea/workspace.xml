@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/caching-calculator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tasks/array-processing-tool/array-processing-tool.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/array-processing-tool.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/array-processing-tool.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +34,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,12 +52,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="liveEdit" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Xiaomi\source\repos\JSTask2\tasks\array-processing-tool" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -73,7 +81,8 @@
       <workItem from="1603471824719" duration="5079000" />
       <workItem from="1603638762520" duration="1512000" />
       <workItem from="1603651828802" duration="5724000" />
-      <workItem from="1603691389144" duration="12327000" />
+      <workItem from="1603691389144" duration="13476000" />
+      <workItem from="1603715135340" duration="935000" />
     </task>
     <servers />
   </component>
