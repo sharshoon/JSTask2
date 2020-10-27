@@ -1,4 +1,7 @@
 const dateDisplayFormatter = {
+    monthNames : ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ],
     convertToISO(stringDate, dateFormat){
         const date = this.getDate(stringDate, dateFormat);
         let month = date.getMonth() + 1;
@@ -13,21 +16,24 @@ const dateDisplayFormatter = {
     },
 
     convertToCustomFormat(stringDate, dateFormat, resultFormat, isNumericMonth = true){
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
         const date = this.getDate(stringDate, dateFormat);
 
         if(!(date instanceof Date) || isNaN(date)){
             throw Error("invalid date");
         }
 
-        const month = isNumericMonth ? date.getMonth() < 9 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString() : monthNames[date.getMonth()];
+        if(!resultFormat){
+            resultFormat = isNumericMonth ? "DD-MM-YYYY" : "DD MM YYYY";
+        }
+        const month = isNumericMonth ?
+            date.getMonth() < 9 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString()
+            : this.monthNames[date.getMonth()];
         const day = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate().toString();
 
         let result = resultFormat.replace(/[Y]{4}/, date.getFullYear());
         result = result.replace(/[M]{2}/, month);
         result = result.replace(/[D]{2}/, day);
+
         return result;
     },
 
@@ -67,6 +73,14 @@ const dateDisplayFormatter = {
                         }
                     }
                 }
+
+                // if user enter ticks to to the text input
+                // There may be a situation when the user entered 30062020 and meant that this is a date string,
+                // So I am handling it here after I made sure the input data cannot be processed as a string
+                const ticks = parseInt(date);
+                if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
+                    return new Date(ticks);
+                }
             }
             else{
                 const year = date.slice(dateFormat.indexOf("Y"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("Y")),
@@ -76,15 +90,6 @@ const dateDisplayFormatter = {
                 if(dateCheck(dateObj, year, month, day)){
                     return dateObj;
                 }
-            }
-
-            // if user enter ticks to to the text input
-            // There may be a situation when the user entered 30062020 and meant that this is a date string,
-            // So I am handling it here after I made sure the input data cannot be processed as a string
-            const ticks = parseInt(date);
-            if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
-                console.log(ticks, date);
-                return new Date(ticks);
             }
         }
 
@@ -132,5 +137,5 @@ dateDisplayFormatter.formats.set("DDMMYYYY", /^(?<day>[0-9]{2})(?<month>[0-9]{2}
 dateDisplayFormatter.formats.set("DD MM YYYY", /^(?<day>[0-9]{2}) (?<month>[0-9]{2}) (?<year>[0-9]{4})$/);
 dateDisplayFormatter.formats.set("DD.MM.YYYY", /^(?<day>[0-9]{2}).(?<month>[0-9]{2}).(?<year>[0-9]{4})$/);
 dateDisplayFormatter.formats.set("YYYY-MM-DD", /^(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})$/);
-dateDisplayFormatter.formats.set("MM-DD-YYYY", /^(?<month>[0-9]{2})-(?<day>[0-9]{2})-(?<year>[0-9]{4})$/);
+dateDisplayFormatter.formats.set("DD-MM-YYYY", /^(?<day>[0-9]{2})-(?<month>[0-9]{2})-(?<year>[0-9]{4})$/);
 dateDisplayFormatter.formats.set("MM/DD/YYYY", /^(?<month>[0-9]{2})\/(?<day>[0-9]{2})\/(?<year>[0-9]{4})$/);

@@ -38,7 +38,9 @@ function handleCustomFormatDate(dateClass, regexpClass, containerClass, resultRe
 
     const option = monthOption !== OPTION_STRING_MONTH;
     try{
-        dataElements.resultContainer.innerHTML = dateDisplayFormatter.convertToCustomFormat(dataElements.date, dataElements.regexp, resultRegexp , option);
+        dataElements.resultContainer.innerHTML = dateDisplayFormatter
+            .convertToCustomFormat(dataElements.date, dataElements.regexp || undefined,
+                resultRegexp || undefined, option);
     }
     catch(e){
         dataElements.resultContainer.innerHTML = e.message;
