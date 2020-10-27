@@ -3,7 +3,7 @@ function handleIsoDate(e){
     const regexp = document.getElementsByClassName("iso-date__input-regexp")[0].value;
     const resultContainer = document.getElementsByClassName("iso-date__result-container")[0];
     try{
-        resultContainer.innerHTML = dateDisplayFormatter.convertToISO(parseInt(date) || date, regexp);
+        resultContainer.innerHTML = dateDisplayFormatter.convertToISO(date, regexp);
     }
     catch(e){
         resultContainer.innerHTML = e.message;
