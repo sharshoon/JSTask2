@@ -35,9 +35,9 @@ const stringCalculator = {
 
     // performs multiplication and division
     executePriorityOperations(sourceOperations){
-        let operations = sourceOperations.slice();
-        let multiplicationIndex = operations.indexOf('*');
-        let divisionIndex = operations.indexOf('/');
+        const operations = sourceOperations.slice();
+        const multiplicationIndex = operations.indexOf('*');
+        const divisionIndex = operations.indexOf('/');
 
         if(multiplicationIndex !== -1 || divisionIndex !== -1){
             let operation,
@@ -60,8 +60,8 @@ const stringCalculator = {
 
     // performs addition and subtraction
     sumOrSubItems(sourceOperations){
-        let operations = sourceOperations.slice(),
-            result = operations[0];
+        const operations = sourceOperations.slice();
+        let result = operations[0];
 
         let i = 1;
         while(i < operations.length){

@@ -1,6 +1,6 @@
 const arraySorter = {
     bubbleSort(array, ascending = true){
-        let resultArray = array.slice();
+        const resultArray = array.slice();
 
         let comparisonExpression = ascending ? (a,b) => {return a > b} : (a,b) => {return a < b};
         for (let i = 0; i < resultArray.length; i++) {
@@ -38,8 +38,8 @@ const arraySorter = {
     },
 
     heapSort(sourceArray){
-        let array = sourceArray.slice();
-        let maxHeap = (input, i, arrayLength) => {
+        const array = sourceArray.slice();
+        const maxHeap = (input, i, arrayLength) => {
             const leftBorder = 2 * i + 1,
                 rightBorder = 2 * i + 2;
             let max = i;
@@ -71,7 +71,7 @@ const arraySorter = {
     },
 
     insertionSort(sourceArray) {
-        let array = sourceArray.slice(),
+        const array = sourceArray.slice(),
             length = sourceArray.length;
         for (let i = 1; i < length; i++) {
             let currentElement = array[i],
@@ -86,8 +86,8 @@ const arraySorter = {
     },
 
     selectionSort(sourceArray) {
-        let array = sourceArray.slice(),
-            min,
+        const array = sourceArray.slice();
+        let min,
             length = sourceArray.length;
 
         for(let i = 0; i < length; i++){
