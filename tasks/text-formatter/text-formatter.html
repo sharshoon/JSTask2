@@ -30,7 +30,12 @@
                     <option value="sentence">Sentence by sentence</option>
                     <option value="none">None</option>
                 </select>
-                <input class="method__button text-formatter__button" type="submit" value="SUBMIT" />
+                <input class="method__button text-formatter__button"
+                       type="submit"
+                       onclick="handleTextFormat('text-formatter__input-text', 'text-formatter__input-max-text',
+                       'text-formatter__input-max-line', 'text-formatter__select-mode', 'text-formatter__result-container')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
     </main>

@@ -20,8 +20,12 @@
             <h2 class="method__name">Binary to Decimal</h2>
             <div class="method__result bin-to-dec__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Number</label><input class="method__input bin-to-dec__input"type="text" name="bin-to-dec-input" placeholder="5,1">
-                <input class="method__button bin-to-dec__button" type="submit" value="SUBMIT">
+                <label>Number</label><input class="method__input bin-to-dec__input"type="text" name="bin-to-dec-input" placeholder="5,1"/>
+                <input class="method__button bin-to-dec__button"
+                       type="submit"
+                       onclick="handleBinToDecConverter('bin-to-dec__input', 'bin-to-dec__result-container')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
 
@@ -29,8 +33,12 @@
             <h2 class="method__name">Decimal to binary</h2>
             <div class="method__result dec-to-bin__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Number</label><input class="method__input dec-to-bin__input"type="text" name="dec-to-bin-input" placeholder="5,1">
-                <input class="method__button dec-to-bin__button" type="submit" value="SUBMIT">
+                <label>Number</label><input class="method__input dec-to-bin__input"type="text" name="dec-to-bin-input" placeholder="5,1"/>
+                <input class="method__button dec-to-bin__button"
+                       type="submit"
+                       onclick="handleDecToBinConverter('dec-to-bin__input', 'dec-to-bin__result-container')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
 
@@ -38,10 +46,15 @@
             <h2 class="method__name">Custom to custom</h2>
             <div class="method__result custom-converter__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Number</label><input class="method__input custom-converter__input"type="text" name="custom-converter-input" placeholder="5,1">
-                <label>Source Notation</label><input class="method__input custom-converter__input-source-notation"type="text" name="custom-converter-input-source-notation" placeholder="10">
-                <label>Dest Notation</label><input class="method__input custom-converter__input-dest-notation"type="text" name="custom-converter-input-dest-notation" placeholder="16">
-                <input class="method__button custom-converter__button" type="submit" value="SUBMIT">
+                <label>Number</label><input class="method__input custom-converter__input"type="text" name="custom-converter-input" placeholder="5,1"/>
+                <label>Source Notation</label><input class="method__input custom-converter__input-source-notation"type="text" name="custom-converter-input-source-notation" placeholder="10"/>
+                <label>Dest Notation</label><input class="method__input custom-converter__input-dest-notation"type="text" name="custom-converter-input-dest-notation" placeholder="16"/>
+                <input class="method__button custom-converter__button"
+                       type="submit"
+                       onclick="handleCustomConverter('custom-converter__input', 'custom-converter__result-container',
+                       'custom-converter__input-source-notation', 'custom-converter__input-dest-notation')"
+                       value="SUBMIT"
+                />
             </div>
         </div>
     </main>

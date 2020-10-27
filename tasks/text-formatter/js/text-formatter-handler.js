@@ -1,9 +1,9 @@
-function handleTextFormat(e){
-    const text = document.getElementsByClassName("text-formatter__input-text")[0].value;
-    const maxTextLength = document.getElementsByClassName("text-formatter__input-max-text")[0].value;
-    const maxLineLength = document.getElementsByClassName("text-formatter__input-max-line")[0].value;
-    const wrapOption = document.getElementsByClassName("text-formatter__select-mode")[0].value;
-    const resultContainer = document.getElementsByClassName("text-formatter__result-container")[0];
+function handleTextFormat(textClass, maxTextLengthClass, maxLineLengthClass, wrapOptionClass, resultContainerClass){
+    const text = document.getElementsByClassName(textClass)[0].value;
+    const maxTextLength = document.getElementsByClassName(maxTextLengthClass)[0].value;
+    const maxLineLength = document.getElementsByClassName(maxLineLengthClass)[0].value;
+    const wrapOption = document.getElementsByClassName(wrapOptionClass)[0].value;
+    const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
         if(maxTextLength < 0){
@@ -22,5 +22,3 @@ function handleTextFormat(e){
         resultContainer.innerHTML = e.message;
     }
 }
-
-document.getElementsByClassName("text-formatter__button")[0].addEventListener("click", handleTextFormat);

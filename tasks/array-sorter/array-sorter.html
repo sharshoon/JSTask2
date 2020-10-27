@@ -30,7 +30,10 @@
                     <option value="insertion-sort">Insertion Sort</option>
                     <option value="selection-sort">Selection Sort</option>
                 </select>
-                <input class="method__button array-sorter__button" type="submit" value="SUBMIT" />
+                <input class="method__button array-sorter__button"
+                       type="submit"
+                       onclick="handleArraySorter('array-sorter__input', 'array-sorter__select-algorithm', 'array-sorter__result-container')"
+                       value="SUBMIT" />
             </div>
         </div>
     </main>
