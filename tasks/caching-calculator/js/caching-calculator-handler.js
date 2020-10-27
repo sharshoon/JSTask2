@@ -23,7 +23,7 @@ function handleSetCacheLength(lengthClass, resultContainerClass){
         const result = cachingCalculator.maxCacheLength = length;
 
         if(!result){
-            throw new Error(e);
+            throw new Error("Invalid data");
         }
 
         resultContainer.innerHTML = `New cache length is ${length}`;
@@ -42,6 +42,6 @@ function handleAddExpressionToCache(expressionClass, resultContainerClass){
         resultContainer.innerHTML = `${expression} was added to cache!`;
     }
     catch(e){
-        resultContainer.innerHTML = e.message;
+        resultContainer.innerHTML = "Invalid expression";
     }
 }

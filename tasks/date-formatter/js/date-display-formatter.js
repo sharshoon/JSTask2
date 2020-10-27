@@ -82,7 +82,8 @@ const dateDisplayFormatter = {
             // There may be a situation when the user entered 30062020 and meant that this is a date string,
             // So I am handling it here after I made sure the input data cannot be processed as a string
             const ticks = parseInt(date);
-            if(ticks){
+            if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
+                console.log(ticks, date);
                 return new Date(ticks);
             }
         }

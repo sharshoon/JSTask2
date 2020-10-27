@@ -102,7 +102,6 @@ const stringCalculator = {
             i+=2;
         }
 
-        console.log(result);
         return result;
     }
 }

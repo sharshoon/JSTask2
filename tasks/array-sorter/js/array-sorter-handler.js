@@ -1,12 +1,14 @@
 function handleArraySorter(arrayClass, algorithmClass, resultContainerClass){
-    const array = document.getElementsByClassName(arrayClass)[0].value.split(",").map(item => +item);
+    const array = document.getElementsByClassName(arrayClass)[0].value.split(",").map(item => parseInt(item));
     const algorithm = document.getElementsByClassName(algorithmClass)[0].value;
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
-        
         const result = algorithms.get(algorithm)(array);
-        if(!result || (Array.isArray(result) && result.includes(NaN))){
+        if(!result){
+            throw new Error("Invalid array");
+        }
+        if(array.some(element => isNaN(element))){
             throw new Error("Invalid array");
         }
         resultContainer.innerHTML = result;

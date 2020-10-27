@@ -1,5 +1,5 @@
 describe("5. array sorter", function() {
-    describe("bubble sort", function() {
+    describe("array sort", function() {
         it("bubble sort of [3,1,7,5,4] = [1, 3, 4, 5, 7]", function() {
             assert.isTrue(compare(arraySorter.bubbleSort([3,1,7,5,4]), [1, 3, 4, 5, 7]));
         });

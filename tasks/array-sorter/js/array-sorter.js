@@ -52,7 +52,7 @@ const arraySorter = {
             }
             if (max !== i){
                 [input[i], input[max]] = [input[max], input[i]];
-                maxHeap(input, max);
+                maxHeap(input, max, arrayLength);
             }
         }
 

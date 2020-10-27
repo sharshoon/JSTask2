@@ -25,7 +25,7 @@ const textFormatter = {
                 resultText += newLine.trim() + "." + "\n";
             }
 
-            return resultText.trim();
+            return resultText.trim().slice(0, resultText.length-2);
         }
         else if(lineBreakStyle === "none"){
             if(maxLineLength === Infinity){
