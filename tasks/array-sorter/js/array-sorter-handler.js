@@ -1,10 +1,10 @@
 function handleArraySorter(e){
     const algorithms = new Map();
-    algorithms.set("bubble-sort", arraySorter.bubbleSort);
-    algorithms.set("quick-sort", arraySorter.quickSort);
-    algorithms.set("heap-sort", arraySorter.heapSort);
-    algorithms.set("insertion-sort", arraySorter.insertionSort);
-    algorithms.set("selection-sort", arraySorter.selectionSort);
+    algorithms.set("bubble-sort", arraySorter.bubbleSort.bind(arraySorter));
+    algorithms.set("quick-sort", arraySorter.quickSort.bind(arraySorter));
+    algorithms.set("heap-sort", arraySorter.heapSort.bind(arraySorter));
+    algorithms.set("insertion-sort", arraySorter.insertionSort.bind(arraySorter));
+    algorithms.set("selection-sort", arraySorter.selectionSort.bind(arraySorter));
 
     const array = document.getElementsByClassName("array-sorter__input")[0].value.split(",").map(item => +item);
     const algorithm = document.getElementsByClassName("array-sorter__select-algorithm")[0].value;
