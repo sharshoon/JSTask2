@@ -47,8 +47,8 @@ const dateDisplayFormatter = {
             return false;
         }
 
-        const date = sourceDate.trim(),
-            dateFormat = sourceDateFormat.trim();
+        const date = sourceDate ? sourceDate.trim() : sourceDate,
+            dateFormat = sourceDateFormat ? sourceDateFormat.trim() : sourceDateFormat;
         if(typeof date === "number"){
             return new Date(date);
         }

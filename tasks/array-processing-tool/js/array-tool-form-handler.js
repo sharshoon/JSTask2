@@ -1,49 +1,40 @@
-function handleMaxSumO1(e){
-    let array = document.getElementsByClassName("max-sum1__input")[0].value;
+function findDataElements(arrayName, resultContainerName){
+    let array = document.getElementsByClassName(arrayName)[0].value;
     array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
 
-    const resultContainer = document.getElementsByClassName("max-sum1__result-container")[0];
-    resultContainer.innerHTML = arrayTool.getMaxSubSumO1(array);
+    const resultContainer = document.getElementsByClassName(resultContainerName)[0];
+
+    return {array, resultContainer};
+}
+
+function handleMaxSumO1(e){
+    const dataElements = findDataElements("max-sum1__input", "max-sum1__result-container");
+    dataElements.resultContainer.innerHTML = arrayTool.getMaxSubSumO1(dataElements.array);
 }
 
 function handleMaxSumO2(e){
-    let array = document.getElementsByClassName("max-sum2__input")[0].value;
-    array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
-
-    const resultContainer = document.getElementsByClassName("max-sum2__result-container")[0];
-    resultContainer.innerHTML = arrayTool.getMaxSubSumO2(array);
+    const dataElements = findDataElements("max-sum2__input", "max-sum2__result-container");
+    dataElements.resultContainer.innerHTML = arrayTool.getMaxSubSumO2(dataElements.array);
 }
 
 function handleFindMax(e){
-    let array = document.getElementsByClassName("find-max__input")[0].value;
-    array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
-
-    const resultContainer = document.getElementsByClassName("find-max__result-container")[0];
-    resultContainer.innerHTML = arrayTool.findMax(array);
+    const dataElements = findDataElements("find-max__input", "find-max__result-container");
+    dataElements.resultContainer.innerHTML = arrayTool.findMax(dataElements.array);
 }
 
 function handleFindMin(e){
-    let array = document.getElementsByClassName("find-min__input")[0].value;
-    array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
-
-    const resultContainer = document.getElementsByClassName("find-min__result-container")[0];
-    resultContainer.innerHTML = arrayTool.findMin(array);
+    const dataElements = findDataElements("find-min__input", "find-min__result-container");
+    dataElements.resultContainer.innerHTML = arrayTool.findMin(dataElements.array);
 }
 
 function handleFindMedian(e){
-    let array = document.getElementsByClassName("find-median__input")[0].value;
-    array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
-
-    const resultContainer = document.getElementsByClassName("find-median__result-container")[0];
-    resultContainer.innerHTML = arrayTool.findMedian(array);
+    const dataElements = findDataElements("find-median__input", "find-median__result-container");
+    dataElements.resultContainer.innerHTML = arrayTool.findMedian(dataElements.array);
 }
 
 function handleMaxSequence(e){
-    let array = document.getElementsByClassName("max-sequence__input")[0].value;
-    array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
-
-    const resultContainer = document.getElementsByClassName("max-sequence__result-container")[0];
-    resultContainer.innerHTML = arrayTool.maxAscendingSequence(array);
+    const dataElements = findDataElements("max-sequence__input", "max-sequence__result-container");
+    dataElements.resultContainer.innerHTML = arrayTool.maxAscendingSequence(dataElements.array);
 }
 
 document.getElementsByClassName("max-sum1__button")[0].addEventListener("click", handleMaxSumO1);

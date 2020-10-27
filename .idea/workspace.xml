@@ -21,8 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="91308aa4-56bd-41fd-a29b-6262ed0d91fc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/date-formatter/js/date-display-formatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/date-formatter/js/date-display-formatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-tool-form-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/array-processing-tool/js/array-tool-form-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/date-formatter/date-formatter.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/date-formatter/date-formatter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/date-formatter/js/date-formatter-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/date-formatter/js/date-formatter-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/text-formatter/js/text-formatter-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/text-formatter/js/text-formatter-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/text-formatter/text-formatter.html" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/text-formatter/text-formatter.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

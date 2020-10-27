@@ -1,12 +1,21 @@
+function findCommonDataElements(dateClass, regexpClass, containerClass){
+    const date = document.getElementsByClassName(dateClass)[0].value;
+    const regexp = document.getElementsByClassName(regexpClass)[0].value;
+    const resultContainer = document.getElementsByClassName(containerClass)[0];
+
+    return {date, regexp, resultContainer};
+}
+
 function handleIsoDate(e){
-    const date = document.getElementsByClassName("iso-date__input-date")[0].value;
-    const regexp = document.getElementsByClassName("iso-date__input-regexp")[0].value;
-    const resultContainer = document.getElementsByClassName("iso-date__result-container")[0];
+    const dataElements = findCommonDataElements("iso-date__input-date", "iso-date__input-regexp",
+        "iso-date__result-container");
+
+    console.log(dataElements);
     try{
-        resultContainer.innerHTML = dateDisplayFormatter.convertToISO(date, regexp);
+        dataElements.resultContainer.innerHTML = dateDisplayFormatter.convertToISO(dataElements.date, dataElements.regexp);
     }
     catch(e){
-        resultContainer.innerHTML = e.message;
+        dataElements.resultContainer.innerHTML = e.message;
     }
 }
 
@@ -15,48 +24,45 @@ function handleCustomLocaleDate(e){
     options.set("string-month", { month: 'long', day: 'numeric', year : 'numeric' });
     options.set("numeric-month", { month: 'numeric', day: 'numeric', year : 'numeric' });
 
-    const date = document.getElementsByClassName("date-custom-locale__input-date")[0].value;
-    const regexp = document.getElementsByClassName("date-custom-locale__input-regexp")[0].value;
+    const dataElements = findCommonDataElements("date-custom-locale__input-date",
+        "date-custom-locale__input-regexp",
+        "date-custom-locale__result-container");
     const locale = document.getElementsByClassName("date-custom-locale__select-locale")[0].value;
     const monthOption = document.getElementsByClassName("date-custom-locale__select-options")[0].value;
-    const resultContainer = document.getElementsByClassName("date-custom-locale__result-container")[0];
-
     const option = options.get(monthOption) ?? { month: 'numeric', day: 'numeric', year : 'numeric' };
+
     try{
-        resultContainer.innerHTML = dateDisplayFormatter.formatToCustomLocale(date, regexp, locale , option);
+        dataElements.resultContainer.innerHTML = dateDisplayFormatter.formatToCustomLocale(dataElements.date, dataElements.regexp, locale , option);
     }
     catch(e){
-        resultContainer.innerHTML = e.message;
+        dataElements.resultContainer.innerHTML = e.message;
     }
 }
 
 function handleCustomFormatDate(e){
-
-    const date = document.getElementsByClassName("date-custom-format__input-date")[0].value;
-    const regexp = document.getElementsByClassName("date-custom-format__input-regexp")[0].value;
+    const dataElements = findCommonDataElements("date-custom-format__input-date", "date-custom-format__input-regexp",
+        "date-custom-format__result-container");
     const resultRegexp = document.getElementsByClassName("date-custom-format__result-regexp")[0].value;
     const monthOption = document.getElementsByClassName("date-custom-format__select-options")[0].value;
-    const resultContainer = document.getElementsByClassName("date-custom-format__result-container")[0];
 
     const option = monthOption !== "string-month";
     try{
-        resultContainer.innerHTML = dateDisplayFormatter.convertToCustomFormat(date, regexp, resultRegexp , option);
+        dataElements.resultContainer.innerHTML = dateDisplayFormatter.convertToCustomFormat(dataElements.date, dataElements.regexp, resultRegexp , option);
     }
     catch(e){
-        resultContainer.innerHTML = e.message;
+        dataElements.resultContainer.innerHTML = e.message;
     }
 }
 
 function handleDateFromNow(e){
-    const date = document.getElementsByClassName("date-from-now__input-date")[0].value;
-    const regexp = document.getElementsByClassName("date-from-now__input-regexp")[0].value;
-    const resultContainer = document.getElementsByClassName("date-from-now__result-container")[0];
+    const dataElements = findCommonDataElements("date-from-now__input-date", "date-from-now__input-regexp",
+        "date-from-now__result-container");
 
     try{
-        resultContainer.innerHTML = dateDisplayFormatter.fromNow(date, regexp);
+        dataElements.resultContainer.innerHTML = dateDisplayFormatter.fromNow(dataElements.date, dataElements.regexp);
     }
     catch(e){
-        resultContainer.innerHTML = e.message;
+        dataElements.resultContainer.innerHTML = e.message;
     }
 }
 
