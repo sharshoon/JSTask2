@@ -13,7 +13,7 @@ function handleTextFormat(textClass, maxTextLengthClass, maxLineLengthClass, wra
             throw new Error("Max Line Length should be more than zero");
         }
 
-        const result = textFormatter.formatText(text, maxTextLength || undefined, maxLineLength || undefined, wrapOption);
+        const result = textFormatter.formatText(text, parseInt(maxTextLength) || undefined, parseInt(maxLineLength) || undefined, wrapOption);
         
         // I think it would be wrong to write <br/> in the text formatting function, because it becomes less universal
         resultContainer.innerHTML = result.replaceAll("\n", "<br/>");

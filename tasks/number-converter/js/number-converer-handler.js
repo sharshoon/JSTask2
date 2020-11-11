@@ -15,11 +15,11 @@ function handleBinToDecConverter(numberClass, resultContainerClass){
 }
 
 function handleDecToBinConverter(numberClass, resultContainerClass){
-    const number = document.getElementsByClassName(numberClass)[0].value.split(",");
+    const number = document.getElementsByClassName(numberClass)[0].value.trim().split(",");
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
-        if(number.some(digit => digit != "0" && digit != "1")){
+        if(number.some(digit => digit.trim().length !== 1)){
             throw new InvalidNumberError("Invalid input");
         }
         const result = numberConverter.decimalToBinary(number);

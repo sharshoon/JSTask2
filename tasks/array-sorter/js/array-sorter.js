@@ -38,7 +38,7 @@ const arraySorter = {
     },
 
     heapSort(sourceArray){
-        const array = sourceArray.slice();
+        const array = [...sourceArray];
         const maxHeap = (input, i, arrayLength) => {
             const leftBorder = 2 * i + 1,
                 rightBorder = 2 * i + 2;

@@ -5,7 +5,21 @@ const textFormatter = {
             return text.split("").map(character => character + "\n").join("");
         }
         else if(lineBreakStyle === "word"){
-            return text.split(" ").map(word => word + "\n").join("");
+            return text
+                .split(/[\s.]+/)
+                .map(word => {
+                    let longWord = word.split("\n");
+                    while(longWord.some(word => word.length > maxLineLength)){
+                        longWord = longWord.map(word => {
+                            if(word.length > maxLineLength){
+                                return word.slice(0, maxLineLength) + "\n" + word.slice(maxLineLength);
+                            }
+                        }).join("").split("\n");
+                    }
+
+                    return longWord.join("\n")+"\n";
+                })
+                .join("")
         }
         else if(lineBreakStyle === "sentence"){
             const sentences = text.split(".");
@@ -14,7 +28,7 @@ const textFormatter = {
             for(let sentence of sentences){
                 let newLine = "";
                 for(let word of sentence.split(" ")){
-                    if(newLine.length + word.length < maxLineLength){
+                    if(newLine.trim().length + word.length - 1 < maxLineLength){
                         newLine += word + " ";
                     }
                     else{
