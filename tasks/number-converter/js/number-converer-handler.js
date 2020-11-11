@@ -3,6 +3,10 @@ function handleBinToDecConverter(numberClass, resultContainerClass){
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
+        if(number.some(digit => digit != "0" && digit != "1")){
+            throw new InvalidNumberError("Invalid input");
+        }
+
         const result = numberConverter.binaryToDecimal(number);
         if(!result){
             throw new InvalidNumberError("Invalid data");
