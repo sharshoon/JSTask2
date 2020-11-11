@@ -1,10 +1,11 @@
 const textFormatter = {
     formatText(sourceText, maxTextLength = sourceText.length, maxLineLength = Infinity, lineBreakStyle = "none"){
         const text = maxTextLength < sourceText.length ? sourceText.slice(0, maxTextLength) : sourceText;
-        if(lineBreakStyle === "character"){
+        if(lineBreakStyle === "character" || maxLineLength === 1){
             return text.split("").map(character => character + "\n").join("");
         }
         else if(lineBreakStyle === "word"){
+
             return text
                 .split(/[\s.]+/)
                 .map(word => {
@@ -27,19 +28,25 @@ const textFormatter = {
             let resultText = "";
             for(let sentence of sentences){
                 let newLine = "";
-                for(let word of sentence.split(" ")){
-                    if(newLine.trim().length + word.length - 1 < maxLineLength){
-                        newLine += word + " ";
-                    }
-                    else{
-                        resultText += newLine.trim() + "\n";
-                        newLine = word + " ";
-                    }
+                let longSentence = sentence.trim().split("\n");
+
+                while(longSentence.some(part => part.length > maxLineLength)){
+                    longSentence = longSentence.map(part => {
+                        if(part.length > maxLineLength){
+                            return part.slice(0, maxLineLength) + "\n" + part.slice(maxLineLength);
+                        }
+                        return part+"\n";
+                    }).join("").split("\n");
                 }
-                resultText += newLine.trim() + "." + "\n";
+
+                resultText += longSentence.join("\n");
+                if(sentence[sentence.length - 1] !== "."){
+                    resultText += ".";
+                }
+                resultText += "\n";
             }
 
-            return resultText.trim().slice(0, resultText.length-2);
+            return resultText.trim();
         }
         else if(lineBreakStyle === "none"){
             if(maxLineLength === Infinity){
