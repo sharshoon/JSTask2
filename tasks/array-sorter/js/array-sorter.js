@@ -1,6 +1,6 @@
 const arraySorter = {
     bubbleSort(array, ascending = true){
-        const resultArray = array.slice();
+        const resultArray = [...array];
 
         let comparisonExpression = ascending ? (a,b) => {return a > b} : (a,b) => {return a < b};
         for (let i = 0; i < resultArray.length; i++) {
@@ -33,7 +33,7 @@ const arraySorter = {
             return quickSortInner(left).concat(pivot, quickSortInner(right));
         }
 
-        const array = sourceArray.slice();
+        const array = [...sourceArray];
         return quickSortInner(array);
     },
 
@@ -71,7 +71,7 @@ const arraySorter = {
     },
 
     insertionSort(sourceArray) {
-        const array = sourceArray.slice(),
+        const array = [...sourceArray],
             length = sourceArray.length;
         for (let i = 1; i < length; i++) {
             let currentElement = array[i],
@@ -86,7 +86,7 @@ const arraySorter = {
     },
 
     selectionSort(sourceArray) {
-        const array = sourceArray.slice();
+        const array = [...sourceArray];
         let min,
             length = sourceArray.length;
 

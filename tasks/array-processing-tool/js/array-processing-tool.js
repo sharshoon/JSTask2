@@ -74,21 +74,28 @@ const arrayTool = {
             return [];
         }
 
-        let startIndex = 0,
-            startMax = 0,
-            stopMax = 0;
-        for(let i = 0; i < array.length - 1; i++){
-            if(array[i+1] <= array[i] && i+1 - startIndex >= stopMax - startMax){
-                startMax = startIndex;
-                stopMax = i+1;
-
-                startIndex = i+1;
+        let maxLength = 1, length = 1, stopMax = 0;
+        for (let i=1; i < array.length; i++)
+        {
+            if(array[i] <= array[i-1])
+            {
+                if (maxLength < length)
+                {
+                    maxLength = length;
+                    stopMax = i - maxLength;
+                }
+                length = 1;
+            }
+            else{
+                length++;
             }
         }
 
-        if(stopMax === 0){
-            stopMax = array.length;
+        if (maxLength < length)
+        {
+            maxLength = length;
+            stopMax = array.length - maxLength;
         }
-        return stopMax - startMax > 1 ? array.slice(startMax, stopMax) : [] ;
+        return maxLength > 1 ? array.slice(stopMax, maxLength+stopMax) : [];
     }
 };

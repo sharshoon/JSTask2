@@ -1,6 +1,12 @@
 // Proxy pattern over string calculator
-const cachingCalculator = {
-    maxCacheLength : 10,
+class CachingCalculator{
+    maxCacheLength = 10;
+    cache;
+
+    constructor() {
+        this.cache = new Map();
+    }
+
     calculate(stringExpression) {
         let result = this.cache.get(stringExpression),
             source = "";
@@ -16,7 +22,8 @@ const cachingCalculator = {
             source = "calculator"; 
             return {result, source};
         }
-    },
+    }
+
     addExpressionToCache(expression){
         if(!this.cache.has(expression)){
             this.checkCacheLoad();
@@ -24,7 +31,7 @@ const cachingCalculator = {
             const result = stringCalculator.calculate(expression);
             this.cache.set(expression, result);
         }
-    },
+    }
 
     checkCacheLoad(){
         if(this.cache.size > this.maxCacheLength - 1){
@@ -35,4 +42,4 @@ const cachingCalculator = {
     }
 }
 
-cachingCalculator.cache = new Map();
+let cachingCalculator = new CachingCalculator();

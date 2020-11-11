@@ -5,7 +5,7 @@ function handleBinToDecConverter(numberClass, resultContainerClass){
     try{
         const result = numberConverter.binaryToDecimal(number);
         if(!result){
-            throw new Error("Invalid data");
+            throw new InvalidNumberError("Invalid data");
         }
         resultContainer.innerHTML = result;
     }
@@ -19,9 +19,12 @@ function handleDecToBinConverter(numberClass, resultContainerClass){
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
+        if(number.some(digit => digit != "0" && digit != "1")){
+            throw new InvalidNumberError("Invalid input");
+        }
         const result = numberConverter.decimalToBinary(number);
         if(!result){
-            throw new Error("Invalid data");
+            throw new InvalidNumberError("Invalid data");
         }
         resultContainer.innerHTML = result;
     }
@@ -37,9 +40,21 @@ function handleCustomConverter(numberClass, resultContainerClass,sourceNotationC
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
 
     try{
+        if(number.some(e => e.length !== 1)){
+            throw new InvalidNumberError("Invalid number input");
+        }
+
+        if(isNaN(parseInt(sourceNotation))){
+            throw new InvalidNumberError("Invalid source notation input");
+        }
+
+        if(isNaN(parseInt(destNotation))){
+            throw new InvalidNumberError("Invalid dest notation input");
+        }
+
         const result = numberConverter.customToCustom(number, sourceNotation, destNotation);
         if(!result){
-            throw new Error("Invalid data");
+            throw new InvalidNumberError("Invalid data");
         }
         resultContainer.innerHTML = result;
     }

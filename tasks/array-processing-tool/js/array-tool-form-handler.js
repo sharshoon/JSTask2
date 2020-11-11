@@ -3,7 +3,6 @@ function findDataElements(arrayClass, resultContainerClass){
     array = array.trim() !== "" ? array.split(",").map(item => parseInt(item)) : [];
 
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
-    console.log(array);
     return {array, resultContainer};
 }
 

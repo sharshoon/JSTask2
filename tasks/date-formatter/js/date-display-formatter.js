@@ -19,20 +19,30 @@ const dateDisplayFormatter = {
         const date = this.getDate(stringDate, dateFormat);
 
         if(!(date instanceof Date) || isNaN(date)){
-            throw Error("invalid date");
+            throw new Error("invalid date");
         }
 
         if(!resultFormat){
             resultFormat = isNumericMonth ? "DD-MM-YYYY" : "DD MM YYYY";
         }
-        const month = isNumericMonth ?
-            date.getMonth() < 9 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString()
-            : this.monthNames[date.getMonth()];
-        const day = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate().toString();
 
-        let result = resultFormat.replace(/[Y]{4}/, date.getFullYear());
-        result = result.replace(/[M]{2}/, month);
-        result = result.replace(/[D]{2}/, day);
+        let result;
+        const yearCharsLength = dateFormatterHelper.getCharsLength(resultFormat, "Y", [4,2]),
+            year = yearCharsLength === 4 ? date.getFullYear() : date.getFullYear().toString().slice(2,4);
+
+        result = resultFormat.replace(new RegExp("Y".repeat(yearCharsLength)), year);
+
+        const monthCharsLength = dateFormatterHelper.getCharsLength(resultFormat, "M", [2,1]),
+            month = isNumericMonth ?
+            date.getMonth() < 9 && monthCharsLength === 2 ? `0${date.getMonth()+1}` : (date.getMonth()+1).toString()
+            : this.monthNames[date.getMonth()];
+
+        result = result.replace(new RegExp("M".repeat(monthCharsLength)), month);
+
+        const dayCharsLength = dateFormatterHelper.getCharsLength(resultFormat,"D", [2,1]),
+            day = date.getDate() <= 9 && dayCharsLength === 2 ? `0${date.getDate()}` : date.getDate().toString();
+
+        result = result.replace(new RegExp("D".repeat(dayCharsLength)), day);
 
         return result;
     },
@@ -45,16 +55,9 @@ const dateDisplayFormatter = {
     getDate(sourceDate, sourceDateFormat){
         // it is acceptable to write "new Date(2013, 3, 31)" and get 1 May 2013,
         // this does not suit me, here I brush aside these cases
-        const dateCheck = (dateObj, year, month, day) => {
-            if(dateObj && parseInt(month) === dateObj.getMonth() + 1 && parseInt(day) === dateObj.getDate()){
-                return true;
-            }
 
-            return false;
-        }
-
-        const date = sourceDate ? sourceDate.trim() : sourceDate,
-            dateFormat = sourceDateFormat ? sourceDateFormat.trim() : sourceDateFormat;
+        const date = sourceDate ? dateFormatterHelper.trimInputDate(sourceDate) : sourceDate,
+            dateFormat = sourceDateFormat ? dateFormatterHelper.trimInputDate(sourceDateFormat) : sourceDateFormat;
         if(typeof date === "number"){
             return new Date(date);
         }
@@ -66,9 +69,8 @@ const dateDisplayFormatter = {
                     const searchResults = date.match(reg);
 
                     if(searchResults){
-                        const dateObj = new Date(searchResults[0]
-                            .replace(reg, `${parseInt(searchResults.groups.year)}-${parseInt(searchResults.groups.month)}-${searchResults.groups.day}`));
-                        if(dateCheck(dateObj, searchResults.groups.year, searchResults.groups.month, searchResults.groups.day)){
+                        const dateObj = dateFormatterHelper.getDateObject(searchResults, reg);
+                        if(dateFormatterHelper.dateValidityCheck(dateObj, searchResults.groups.year, searchResults.groups.month, searchResults.groups.day)){
                             return dateObj;
                         }
                     }
@@ -83,11 +85,11 @@ const dateDisplayFormatter = {
                 }
             }
             else{
-                const year = date.slice(dateFormat.indexOf("Y"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("Y")),
-                    month = date.slice(dateFormat.indexOf("M"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("M")),
-                    day = date.slice(dateFormat.indexOf("D"), dateFormat.length - dateFormat.split("").reverse().join("").indexOf("D"));
+                const year = dateFormatterHelper.getDatePart(date, dateFormat, "Y"),
+                    month = dateFormatterHelper.getDatePart(date, dateFormat, "M"),
+                    day = dateFormatterHelper.getDatePart(date, dateFormat, "D");
                 const dateObj = new Date(`${parseInt(year)}-${parseInt(month)}-${parseInt(day)}`);
-                if(dateCheck(dateObj, year, month, day)){
+                if(dateFormatterHelper.dateValidityCheck(dateObj, year, month, day)){
                     return dateObj;
                 }
             }

@@ -6,10 +6,10 @@ function handleArraySorter(arrayClass, algorithmClass, resultContainerClass){
     try{
         const result = algorithms.get(algorithm)(array);
         if(!result){
-            throw new Error("Invalid array");
+            throw new InvalidArrayError("Invalid array", array);
         }
         if(array.some(element => isNaN(element))){
-            throw new Error("Invalid array");
+            throw new InvalidArrayError("Invalid array", array);
         }
         resultContainer.innerHTML = result;
     }
@@ -19,8 +19,8 @@ function handleArraySorter(arrayClass, algorithmClass, resultContainerClass){
 }
 
 const algorithms = new Map();
-algorithms.set("bubble-sort", arraySorter.bubbleSort.bind(arraySorter));
-algorithms.set("quick-sort", arraySorter.quickSort.bind(arraySorter));
-algorithms.set("heap-sort", arraySorter.heapSort.bind(arraySorter));
-algorithms.set("insertion-sort", arraySorter.insertionSort.bind(arraySorter));
-algorithms.set("selection-sort", arraySorter.selectionSort.bind(arraySorter));
+algorithms.set(BUBBLE_SORT, arraySorter.bubbleSort.bind(arraySorter));
+algorithms.set(QUICK_SORT, arraySorter.quickSort.bind(arraySorter));
+algorithms.set(HEAP_SORT, arraySorter.heapSort.bind(arraySorter));
+algorithms.set(INSERTION_SORT, arraySorter.insertionSort.bind(arraySorter));
+algorithms.set(SELECTION_SORT, arraySorter.selectionSort.bind(arraySorter));
