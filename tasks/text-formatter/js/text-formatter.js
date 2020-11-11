@@ -46,7 +46,7 @@ const textFormatter = {
                 return text;
             }
 
-            const words = text.split(" ");
+            const words = text.split(/[\s.]+/);
 
             let resultText = "",
                 newLine = "";
