@@ -1,5 +1,6 @@
-const arraySorter = {
+class ArraySorter {
     bubbleSort(array, ascending = true){
+        arrayHelper.emptyArrayCheck(array);
         const resultArray = [...array];
 
         let comparisonExpression = ascending ? (a,b) => {return a > b} : (a,b) => {return a < b};
@@ -11,33 +12,34 @@ const arraySorter = {
             }
         }
         return resultArray;
-    },
+    }
+
+    #quickSortInner(array){
+        if (array.length < 2) {
+            return array;
+        }
+        let pivot = array[0];
+        const left = [],
+            right = [];
+
+        for (let i = 1; i < array.length; i++) {
+            if (pivot > array[i]) {
+                left.push(array[i]);
+            } else {
+                right.push(array[i]);
+            }
+        }
+        return this.#quickSortInner(left).concat(pivot, this.#quickSortInner(right));
+    }
 
     quickSort(sourceArray){
-        function quickSortInner(array){
-            if (array.length < 2) {
-                return array;
-            }
-
-            let pivot = array[0];
-            const left = [],
-                right = [];
-
-            for (let i = 1; i < array.length; i++) {
-                if (pivot > array[i]) {
-                    left.push(array[i]);
-                } else {
-                    right.push(array[i]);
-                }
-            }
-            return quickSortInner(left).concat(pivot, quickSortInner(right));
-        }
-
+        arrayHelper.emptyArrayCheck(array);
         const array = [...sourceArray];
-        return quickSortInner(array);
-    },
+        return this.#quickSortInner(array);
+    }
 
     heapSort(sourceArray){
+        arrayHelper.emptyArrayCheck(array);
         const array = [...sourceArray];
         const maxHeap = (input, i, arrayLength) => {
             const leftBorder = 2 * i + 1,
@@ -68,9 +70,10 @@ const arraySorter = {
             maxHeap(array, 0, arrayLength)
         }
         return array;
-    },
+    }
 
     insertionSort(sourceArray) {
+        arrayHelper.emptyArrayCheck(array);
         const array = [...sourceArray],
             length = sourceArray.length;
         for (let i = 1; i < length; i++) {
@@ -83,9 +86,10 @@ const arraySorter = {
             array[j+1] = currentElement;
         }
         return array;
-    },
+    }
 
     selectionSort(sourceArray) {
+        arrayHelper.emptyArrayCheck(array);
         const array = [...sourceArray];
         let min,
             length = sourceArray.length;
@@ -102,3 +106,5 @@ const arraySorter = {
         return array;
     }
 }
+
+const arraySorter = new ArraySorter();

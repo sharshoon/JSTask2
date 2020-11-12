@@ -2,21 +2,21 @@ const dateDisplayFormatter = {
     monthNames : ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ],
-    convertToISO(stringDate, dateFormat){
-        const date = this.getDate(stringDate, dateFormat);
+    convertToISO(stringDate, dateFormat, dateType){
+        const date = this.getDate(stringDate, dateFormat, dateType);
         let month = date.getMonth() + 1;
         month = month <= 9 ? "0" + month : month;
 
         return `${date.getFullYear()}-${month}-${date.getDate()}`
     },
 
-    formatToCustomLocale(stringDate, dateFormat, locale, options){
-        const date = this.getDate(stringDate, dateFormat);
+    formatToCustomLocale(stringDate, dateFormat, locale, options, dateType){
+        const date = this.getDate(stringDate, dateFormat, dateType);
         return date.toLocaleString(locale, options);
     },
 
-    convertToCustomFormat(stringDate, dateFormat, resultFormat, isNumericMonth = true){
-        const date = this.getDate(stringDate, dateFormat);
+    convertToCustomFormat(stringDate, dateFormat, resultFormat, isNumericMonth = true, dateType){
+        const date = this.getDate(stringDate, dateFormat, dateType);
 
         if(!(date instanceof Date) || isNaN(date)){
             throw new Error("invalid date");
@@ -47,21 +47,21 @@ const dateDisplayFormatter = {
         return result;
     },
 
-    fromNow(stringDate, dateFormat){
-        const date = this.getDate(stringDate, dateFormat);
+    fromNow(stringDate, dateFormat, dateType){
+        const date = this.getDate(stringDate, dateFormat, dateType);
         return this.timespanToHumanString(date, Date.now());
     },
 
-    getDate(sourceDate, sourceDateFormat){
+    getDate(sourceDate, sourceDateFormat, dateType){
         // it is acceptable to write "new Date(2013, 3, 31)" and get 1 May 2013,
         // this does not suit me, here I brush aside these cases
 
         const date = sourceDate ? dateFormatterHelper.trimInputDate(sourceDate) : sourceDate,
             dateFormat = sourceDateFormat ? dateFormatterHelper.trimInputDate(sourceDateFormat) : sourceDateFormat;
-        if(typeof date === "number"){
-            return new Date(date);
+        if(dateType === "number"){
+            return new Date(parseInt(date));
         }
-        else if(typeof date === "string"){
+        else if(dateType === "string"){
             // If the user has not specified the form of the entered date,
             // we will try to recognize it using the built-in templates in the 'formats' dictionary
             if(!dateFormat){
@@ -79,10 +79,10 @@ const dateDisplayFormatter = {
                 // if user enter ticks to to the text input
                 // There may be a situation when the user entered 30062020 and meant that this is a date string,
                 // So I am handling it here after I made sure the input data cannot be processed as a string
-                const ticks = parseInt(date);
-                if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
-                    return new Date(ticks);
-                }
+                // const ticks = parseInt(date);
+                // if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
+                //     return new Date(ticks);
+                // }
             }
             else{
                 const year = dateFormatterHelper.getDatePart(date, dateFormat, "Y"),
