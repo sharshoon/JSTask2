@@ -33,13 +33,13 @@ class ArraySorter {
     }
 
     quickSort(sourceArray){
-        arrayHelper.emptyArrayCheck(array);
+        arrayHelper.emptyArrayCheck(sourceArray);
         const array = [...sourceArray];
         return this.#quickSortInner(array);
     }
 
     heapSort(sourceArray){
-        arrayHelper.emptyArrayCheck(array);
+        arrayHelper.emptyArrayCheck(sourceArray);
         const array = [...sourceArray];
         const maxHeap = (input, i, arrayLength) => {
             const leftBorder = 2 * i + 1,
@@ -73,7 +73,7 @@ class ArraySorter {
     }
 
     insertionSort(sourceArray) {
-        arrayHelper.emptyArrayCheck(array);
+        arrayHelper.emptyArrayCheck(sourceArray);
         const array = [...sourceArray],
             length = sourceArray.length;
         for (let i = 1; i < length; i++) {
@@ -89,7 +89,7 @@ class ArraySorter {
     }
 
     selectionSort(sourceArray) {
-        arrayHelper.emptyArrayCheck(array);
+        arrayHelper.emptyArrayCheck(sourceArray);
         const array = [...sourceArray];
         let min,
             length = sourceArray.length;

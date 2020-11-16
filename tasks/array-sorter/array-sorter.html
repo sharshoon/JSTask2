@@ -23,7 +23,8 @@
             <div class="method__result array-sorter__result-container"></div>
             <div class="method__input-wrapper">
                 <input class="method__input array-sorter__input" type="text" name="get-max-sum1-input" placeholder="1,2,3" />
-                <select class="method__input array-sorter__select-algorithm">
+                <select class="method__input array-sorter__select-algorithm"
+                        onchange="clearOutput('array-sorter__result-container')">
                     <option value="bubble-sort">Bubble Sort</option>
                     <option value="quick-sort">Quick Sort</option>
                     <option value="heap-sort">Heap Sort</option>
@@ -38,6 +39,7 @@
         </div>
     </main>
     <script src="../Helpers/array-helper.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
     <script src="js/array-sorter-constants.js"></script>
     <script src="js/array-sorter.js"></script>
     <script src="js/array-sorter-handler.js"></script>

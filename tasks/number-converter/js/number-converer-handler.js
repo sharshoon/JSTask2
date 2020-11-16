@@ -1,7 +1,7 @@
 function handleBinToDecConverter(numberClass, resultContainerClass){
     const number = document.getElementsByClassName(numberClass)[0].value.split(",");
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
-
+    resultContainer.innerHTML = "";
     try{
         if(number.some(digit => digit != "0" && digit != "1")){
             throw new InvalidNumberError("Invalid input");
@@ -21,7 +21,7 @@ function handleBinToDecConverter(numberClass, resultContainerClass){
 function handleDecToBinConverter(numberClass, resultContainerClass){
     const number = document.getElementsByClassName(numberClass)[0].value.trim().split(",");
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
-
+    resultContainer.innerHTML = "";
     try{
         if(number.some(digit => digit.trim().length !== 1)){
             throw new InvalidNumberError("Invalid input");
@@ -42,6 +42,8 @@ function handleCustomConverter(numberClass, resultContainerClass,sourceNotationC
     const sourceNotation = document.getElementsByClassName(sourceNotationClass)[0].value;
     const destNotation = document.getElementsByClassName(destNotationClass)[0].value;
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
+
+    resultContainer.innerHTML = "";
 
     try{
         if(number.some(e => e.length !== 1)){

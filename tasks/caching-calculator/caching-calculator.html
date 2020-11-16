@@ -15,7 +15,10 @@
             <h2 class="method__name">Calculate</h2>
             <div class="method__result caching-calculator__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Expression:</label><input class="method__input caching-calculator__input-string" type="text" name="caching-calculator-input-string" placeholder="2+2..." />
+                <label>Expression:</label>
+                <input class="method__input caching-calculator__input-string" type="text"
+                       name="caching-calculator-input-string"
+                       oninput="clearOutput('caching-calculator__result-container')" placeholder="2+2..." />
                 <input class="method__button caching-calculator__button"
                        onclick="handleCachingCalculator('caching-calculator__input-string', 'caching-calculator__result-container')"
                        type="submit"
@@ -25,7 +28,11 @@
 
             <div class="method__result caching-calculator__cache-length-container"></div>
             <div class="method__input-wrapper">
-                <label>Max Cache Length:</label><input class="method__input caching-calculator__input-cache-length" type="number" name="caching-calculator-input-length" placeholder="10..." />
+                <label>Max Cache Length:</label>
+                <input class="method__input caching-calculator__input-cache-length" type="number"
+                       name="caching-calculator-input-length"
+                       oninput="clearOutput('caching-calculator__cache-length-container')"
+                       placeholder="10..." />
                 <input class="method__button caching-calculator__cache-length-button"
                        type="submit"
                        onclick="handleSetCacheLength('caching-calculator__input-cache-length', 'caching-calculator__cache-length-container')"
@@ -35,7 +42,10 @@
 
             <div class="method__result caching-calculator__cache-container"></div>
             <div class="method__input-wrapper">
-                <label>Add expression to cache:</label><input class="method__input caching-calculator__input-cache" type="text" name="caching-calculator-input-length" placeholder="3+3" />
+                <label>Add expression to cache:</label>
+                <input class="method__input caching-calculator__input-cache" type="text" name="caching-calculator-input-length"
+                       oninput="clearOutput('caching-calculator__cache-container')"
+                       placeholder="3+3" />
                 <input class="method__button caching-calculator__cache-button"
                        type="submit"
                        onclick="handleAddExpressionToCache('caching-calculator__input-cache', 'caching-calculator__cache-container')"
@@ -45,6 +55,7 @@
         </div>
     </main>
     <script src="js/caching-calculator.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
     <script src="../string-calculator/js/string-calculator.js"></script>
     <script src="js/caching-calculator-handler.js"></script>
 </body>

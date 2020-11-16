@@ -16,6 +16,7 @@ function checkDateParams(regexp, dateType){
 
 function handleIsoDate(dateClass, regexpClass, containerClass, typeClass){
     const dataElements = findCommonDataElements(dateClass, regexpClass, containerClass, typeClass);
+    dataElements.resultContainer.innerHTML = "";
     try{
         checkDateParams(dataElements.regexp, dataElements.dateType);
         dataElements.resultContainer.innerHTML = dateDisplayFormatter.convertToISO(dataElements.date, dataElements.regexp,
@@ -32,6 +33,8 @@ function handleCustomLocaleDate(dateClass, regexpClass, containerClass, localeCl
     const monthOption = document.getElementsByClassName(monthOptionClass)[0].value;
     const option = options.get(monthOption) ?? { month: 'numeric', day: 'numeric', year : 'numeric' };
 
+    dataElements.resultContainer.innerHTML = "";
+
     try{
         checkDateParams(dataElements.regexp, dataElements.dateType);
         dataElements.resultContainer.innerHTML = dateDisplayFormatter.formatToCustomLocale(dataElements.date,
@@ -47,6 +50,8 @@ function handleCustomFormatDate(dateClass, regexpClass, containerClass, resultRe
     const resultRegexp = document.getElementsByClassName(resultRegexpClass)[0].value;
     const monthOption = document.getElementsByClassName(monthOptionClass)[0].value;
 
+    dataElements.resultContainer.innerHTML = "";
+
     const option = monthOption !== OPTION_STRING_MONTH;
     try{
         checkDateParams(dataElements.regexp, dataElements.dateType);
@@ -61,7 +66,7 @@ function handleCustomFormatDate(dateClass, regexpClass, containerClass, resultRe
 
 function handleDateFromNow(dateClass, regexpClass, containerClass, typeClass){
     const dataElements = findCommonDataElements(dateClass, regexpClass, containerClass, typeClass);
-
+    dataElements.resultContainer.innerHTML = "";
     try{
         checkDateParams(dataElements.regexp, dataElements.dateType);
         dataElements.resultContainer.innerHTML = dateDisplayFormatter.fromNow(dataElements.date, dataElements.regexp);

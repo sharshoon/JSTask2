@@ -1,8 +1,19 @@
 const textFormatter = {
     formatText(sourceText, maxTextLength = sourceText.length, maxLineLength = Infinity, lineBreakStyle = "none"){
         const text = maxTextLength < sourceText.length ? sourceText.slice(0, maxTextLength) : sourceText;
+
+        if(maxLineLength === Infinity){
+            return text;
+        }
         if(lineBreakStyle === "character" || maxLineLength === 1){
-            return text.split("").map(character => character + "\n").join("");
+            let i = 0,
+                resultText = "";
+            while(i < text.length){
+                const newLineLength = i + maxLineLength < text.length ? maxLineLength : text.length - i;
+                resultText += text.slice(i, i+ newLineLength) + "\n";
+                i += maxLineLength;
+            }
+            return resultText;
         }
         else if(lineBreakStyle === "word"){
 
@@ -53,25 +64,25 @@ const textFormatter = {
                 return text;
             }
 
-            const words = text.split(/[\s.]+/);
-
-            let resultText = "",
-                newLine = "";
-            for(let word of words){
-                if(newLine.length + word.length < maxLineLength){
-                    newLine += word + " ";
-                }
-                else{
-                    resultText += newLine.trim() + "\n";
-                    newLine = word + " ";
-                }
-            }
-
-            if(newLine.trim()){
-                resultText += newLine;
-            }
-
-            return resultText.trim();
+            // const words = text.split(/[\s.]+/);
+            //
+            // let resultText = "",
+            //     newLine = "";
+            // for(let word of words){
+            //     if(newLine.length + word.length < maxLineLength){
+            //         newLine += word + " ";
+            //     }
+            //     else{
+            //         resultText += newLine.trim() + "\n";
+            //         newLine = word + " ";
+            //     }
+            // }
+            //
+            // if(newLine.trim()){
+            //     resultText += newLine;
+            // }
+            //
+            // return resultText.trim();
         }
     }
 }

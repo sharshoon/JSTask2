@@ -21,10 +21,16 @@
             <h2 class="method__name">Format Text</h2>
             <div class="method__result text-formatter__result-container"></div>
             <div class="method__input-wrapper">
-                <label>Text:</label><input class="method__input text-formatter__input-text" type="text" name="text-formatter-input-text" placeholder="text..." />
-                <label>Max text length (optional):</label><input class="method__input text-formatter__input-max-text" type="number" name="text-formatter-input-text" placeholder="10..." />
-                <label>Max line length (optional):</label><input class="method__input text-formatter__input-max-line" type="number" name="text-formatter-input-text" placeholder="10..." />
-                <select class="method__input text-formatter__select-mode">
+                <label>Text:</label>
+                <input class="method__input text-formatter__input-text" type="text" name="text-formatter-input-text"
+                       oninput="clearOutput('text-formatter__result-container')" placeholder="text..." />
+                <label>Max text length (optional):</label>
+                <input class="method__input text-formatter__input-max-text" type="number" name="text-formatter-input-text"
+                       oninput="clearOutput('text-formatter__result-container')" placeholder="10..." />
+                <label>Max line length (optional):</label>
+                <input class="method__input text-formatter__input-max-line" type="number" name="text-formatter-input-text"
+                       oninput="clearOutput('text-formatter__result-container')" placeholder="10..." />
+                <select class="method__input text-formatter__select-mode" onchange="clearOutput('text-formatter__result-container')">
                     <option value="character">Character by character</option>
                     <option value="word">Word by word</option>
                     <option value="sentence">Sentence by sentence</option>
@@ -40,6 +46,7 @@
         </div>
     </main>
     <script src="js/text-formatter.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
     <script src="js/text-formatter-handler.js"></script>
     <script src="js/text-formatter-tests.js"></script>
     <div id="mocha"></div>

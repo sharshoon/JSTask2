@@ -1,4 +1,6 @@
-const numberConverter = {
+class NumberConverter {
+    static #numberSystemElements = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
     binaryToDecimal(number){
         let result = 0,
             rank = 1;
@@ -7,7 +9,7 @@ const numberConverter = {
             rank *= 2;
         }
         return result;
-    },
+    }
 
     decimalToBinary(numberArray) {
         console.log(numberArray);
@@ -20,63 +22,75 @@ const numberConverter = {
         }
 
         return result.split("").reverse().join("") || "0";
-    },
+    }
+
+    #isZeroArray(number){
+        return number.every(item => item === 0);
+    }
+
+    // next digit in new notation
+    #nextNumber(number, sourceNotation, destNotation, size){
+        let temp = 0;
+        for (let i = 0; i < size; i++){
+            temp = temp*sourceNotation + number[i];
+            number[i] = (temp - temp % destNotation) / destNotation;
+            temp = temp % destNotation;
+        }
+        return temp;
+    }
+
+    #intToChar(num){
+        if ( num >= 0 && num <= 9 ){
+            return String.fromCharCode(num + '0'.charCodeAt(0));
+        }
+        else{
+            return String.fromCharCode(num + 'A'.charCodeAt(0) - 10);
+        }
+    }
+
+    #charToInt(numberElement, sourceNotation){
+        let item = numberElement.toString();
+        if(item.charCodeAt(0) >= '0'.charCodeAt(0) &&  item.charCodeAt(0) <= '9'.charCodeAt(0) &&
+            (item.charCodeAt(0) - '0'.charCodeAt(0) < sourceNotation)){
+            return item.charCodeAt(0) - '0'.charCodeAt(0);
+        }
+        else{
+            if(item.charCodeAt(0) >= 'A'.charCodeAt(0) && item.charCodeAt(0) <= 'Z'.charCodeAt(0)
+                && (item.charCodeAt(0) - 'A'.charCodeAt(0)) < sourceNotation){
+                return item.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
+            }
+            else {
+                return null;
+            }
+        }
+    }
 
     customToCustom(sourceNumber, sourceNotation, destNotation){
-        const nextNumber = (sourceNotation, destNotation, size) => {
-            // next digit in new notation
-            let temp = 0;
-            for (let i = 0; i < size; i++){
-                temp = temp*sourceNotation + number[i];
-                number[i] = (temp - temp % destNotation) / destNotation;
-                temp = temp % destNotation;
-            }
-            return temp;
+        if(sourceNotation > 36 || destNotation > 36){
+            throw new InvalidNotationError("Notation is too big!");
         }
 
-        const isZeroArray = (number) => {
-            return number.every(item => item === 0);
+        const validCharacters = NumberConverter.#numberSystemElements.slice(0, sourceNotation);
+        if(sourceNumber.some(n => !validCharacters.includes(n))){
+            throw new InvalidArgumentError("Source Number contains unacceptable symbols")
         }
 
-        const intToChar = (num) => {
-            if ( num >= 0 && num <= 9 ){
-                return String.fromCharCode(num + '0'.charCodeAt(0));
-            }
-            else{
-                return String.fromCharCode(num + 'A'.charCodeAt(0) - 10);
-            }
-        }
-
-        const number = sourceNumber.reverse().map(numberElement => {
-            // convert char to int
-            let item = numberElement.toString();
-            if(item.charCodeAt(0) >= '0'.charCodeAt(0) &&  item.charCodeAt(0) <= '9'.charCodeAt(0) &&
-                (item.charCodeAt(0) - '0'.charCodeAt(0) < sourceNotation)){
-                return item.charCodeAt(0) - '0'.charCodeAt(0);
-            }
-            else{
-                if(item.charCodeAt(0) >= 'A'.charCodeAt(0) && item.charCodeAt(0) <= 'Z'.charCodeAt(0)
-                    && (item.charCodeAt(0) - 'A'.charCodeAt(0)) < sourceNotation){
-                    return item.charCodeAt(0) - 'A'.charCodeAt(0) + 10;
-                }
-                else {
-                    return null;
-                }
-            }
-        });
+        const number = sourceNumber.reverse().map(numberElement => this.#charToInt(numberElement, sourceNotation));
 
         let b = [],
             size = 0;
         do {
-            b.push(nextNumber(sourceNotation, destNotation, number.length));
+            b.push(this.#nextNumber(number, sourceNotation, destNotation, number.length));
             size++;
-        } while( !isZeroArray(number));
+        } while( !this.#isZeroArray(number));
 
         let result = "";
         for (let i = b.length - 1; i >= 0; i--){
-            result += intToChar(b[i]);
+            result += this.#intToChar(b[i]);
         }
         return result;
     }
 
 }
+
+const numberConverter = new NumberConverter();

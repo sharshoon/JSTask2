@@ -1,7 +1,6 @@
 function findDataElements(arrayClass, resultContainerClass){
     let array = document.getElementsByClassName(arrayClass)[0].value;
-    array = array.trim() !== "" ? array.split(",").map(item => parseInt(item)) : [];
-
+    array = array.trim() !== "" ? array.split(",").map(item => +item) : [];
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
     return {array, resultContainer};
 }
@@ -21,6 +20,7 @@ function tryGetResult(method, array, resultContainer){
         resultContainer.innerHTML = e.message;
     }
 }
+
 
 function handleMaxSumO1(arrayClass, resultContainerClass){
     const dataElements = findDataElements(arrayClass, resultContainerClass);
