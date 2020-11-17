@@ -53,9 +53,6 @@ const dateDisplayFormatter = {
     },
 
     getDate(sourceDate, sourceDateFormat, dateType){
-        // it is acceptable to write "new Date(2013, 3, 31)" and get 1 May 2013,
-        // this does not suit me, here I brush aside these cases
-
         const date = sourceDate ? dateFormatterHelper.trimInputDate(sourceDate) : sourceDate,
             dateFormat = sourceDateFormat ? dateFormatterHelper.trimInputDate(sourceDateFormat) : sourceDateFormat;
         if(dateType === "number"){
@@ -75,19 +72,19 @@ const dateDisplayFormatter = {
                         }
                     }
                 }
-
                 // if user enter ticks to to the text input
                 // There may be a situation when the user entered 30062020 and meant that this is a date string,
                 // So I am handling it here after I made sure the input data cannot be processed as a string
-                // const ticks = parseInt(date);
-                // if(!isNaN(ticks) && date.split("").every(element => !isNaN(parseInt(element)))){
-                //     return new Date(ticks);
-                // }
             }
             else{
-                const year = dateFormatterHelper.getDatePart(date, dateFormat, "Y"),
-                    month = dateFormatterHelper.getDatePart(date, dateFormat, "M"),
-                    day = dateFormatterHelper.getDatePart(date, dateFormat, "D");
+                if(sourceDateFormat.length !== sourceDate.length){
+                    throw new InvalidDateRegexError(`Regex is invalid!`);
+                }
+
+                const year = dateFormatterHelper.getDatePart(date, dateFormat, "Y");
+                const month = dateFormatterHelper.getDatePart(date, dateFormat, "M");
+                const day = dateFormatterHelper.getDatePart(date, dateFormat, "D");
+
                 const dateObj = new Date(`${parseInt(year)}-${parseInt(month)}-${parseInt(day)}`);
                 if(dateFormatterHelper.dateValidityCheck(dateObj, year, month, day)){
                     return dateObj;
@@ -95,7 +92,7 @@ const dateDisplayFormatter = {
             }
         }
 
-
+        console.log(sourceDate);
         throw Error("invalid date");
     },
 

@@ -1,3 +1,5 @@
+const SPACE = "&nbsp";
+
 function handleTextFormat(textClass, maxTextLengthClass, maxLineLengthClass, wrapOptionClass, resultContainerClass){
     const text = document.getElementsByClassName(textClass)[0].value;
     const maxTextLength = document.getElementsByClassName(maxTextLengthClass)[0].value;
@@ -14,9 +16,11 @@ function handleTextFormat(textClass, maxTextLengthClass, maxLineLengthClass, wra
         }
 
         const result = textFormatter.formatText(text, parseInt(maxTextLength) || undefined, parseInt(maxLineLength) || undefined, wrapOption);
-        
+
         // I think it would be wrong to write <br/> in the text formatting function, because it becomes less universal
-        resultContainer.innerHTML = result.replaceAll("\n", "<br/>");
+        resultContainer.innerHTML = result
+            .replaceAll("\n", "<br/>")
+            .replaceAll(" ", SPACE);
     }
     catch(e){
         resultContainer.innerHTML = e.message;

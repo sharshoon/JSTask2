@@ -12,7 +12,6 @@ class NumberConverter {
     }
 
     decimalToBinary(numberArray) {
-        console.log(numberArray);
         let number = parseInt(numberArray.reverse().reduce((accumulator, elem) => accumulator += elem, "")),
             result = "";
 

@@ -69,7 +69,7 @@ function handleDateFromNow(dateClass, regexpClass, containerClass, typeClass){
     dataElements.resultContainer.innerHTML = "";
     try{
         checkDateParams(dataElements.regexp, dataElements.dateType);
-        dataElements.resultContainer.innerHTML = dateDisplayFormatter.fromNow(dataElements.date, dataElements.regexp);
+        dataElements.resultContainer.innerHTML = dateDisplayFormatter.fromNow(dataElements.date, dataElements.regexp, dataElements.dateType);
     }
     catch(e){
         dataElements.resultContainer.innerHTML = e.message;

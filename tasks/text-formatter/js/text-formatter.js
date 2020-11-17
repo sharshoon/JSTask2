@@ -1,11 +1,9 @@
 const textFormatter = {
     formatText(sourceText, maxTextLength = sourceText.length, maxLineLength = Infinity, lineBreakStyle = "none"){
-        const text = maxTextLength < sourceText.length ? sourceText.slice(0, maxTextLength) : sourceText;
+        let text = sourceText.trim();
+        text = maxTextLength < text.length ? text.slice(0, maxTextLength) : text;
 
-        if(maxLineLength === Infinity){
-            return text;
-        }
-        if(lineBreakStyle === "character" || maxLineLength === 1){
+        if(lineBreakStyle === "character"){
             let i = 0,
                 resultText = "";
             while(i < text.length){
@@ -16,73 +14,47 @@ const textFormatter = {
             return resultText;
         }
         else if(lineBreakStyle === "word"){
-
-            return text
-                .split(/[\s.]+/)
-                .map(word => {
-                    let longWord = word.split("\n");
-                    while(longWord.some(word => word.length > maxLineLength)){
-                        longWord = longWord.map(word => {
-                            if(word.length > maxLineLength){
-                                return word.slice(0, maxLineLength) + "\n" + word.slice(maxLineLength);
-                            }
-                        }).join("").split("\n");
+            let resultText = "",
+                line = "",
+                separator;
+            for(let word of text.split(/[\s.]+/)){
+                separator = line ? " " : ""
+                if(line.length + separator.length + word.length <= maxLineLength){
+                    if(line){
+                        line += " ";
                     }
+                    line += word;
+                }
+                else if(word.length > maxLineLength){
+                    resultText += word.slice(0, maxLineLength) + "\n";
+                    line = "";
+                }
+                else{
+                    line += " ".repeat(maxLineLength - line.length);
+                    resultText += line + "\n";
+                    line = word;
+                }
+            }
 
-                    return longWord.join("\n")+"\n";
-                })
-                .join("")
+            if(line){
+                line += " ".repeat(maxLineLength - line.length);
+            }
+            resultText += line;
+            return resultText;
         }
         else if(lineBreakStyle === "sentence"){
-            const sentences = text.split(".");
-
-            let resultText = "";
-            for(let sentence of sentences){
-                let newLine = "";
-                let longSentence = sentence.trim().split("\n");
-
-                while(longSentence.some(part => part.length > maxLineLength)){
-                    longSentence = longSentence.map(part => {
-                        if(part.length > maxLineLength){
-                            return part.slice(0, maxLineLength) + "\n" + part.slice(maxLineLength);
-                        }
-                        return part+"\n";
-                    }).join("").split("\n");
-                }
-
-                resultText += longSentence.join("\n");
-                if(sentence[sentence.length - 1] !== "."){
-                    resultText += ".";
-                }
-                resultText += "\n";
+            if(maxLineLength === 1){
+                throw new InvalidArgumentError("max line length can't be equal to 1");
             }
 
-            return resultText.trim();
+            const resultText = text.split(".").map(sentence => {
+                return sentence.trim().slice(0, maxLineLength - 1);
+            }).join(".\n");
+
+            return resultText[resultText.length - 2] === "." ? resultText : resultText + ".";
         }
         else if(lineBreakStyle === "none"){
-            if(maxLineLength === Infinity){
-                return text;
-            }
-
-            // const words = text.split(/[\s.]+/);
-            //
-            // let resultText = "",
-            //     newLine = "";
-            // for(let word of words){
-            //     if(newLine.length + word.length < maxLineLength){
-            //         newLine += word + " ";
-            //     }
-            //     else{
-            //         resultText += newLine.trim() + "\n";
-            //         newLine = word + " ";
-            //     }
-            // }
-            //
-            // if(newLine.trim()){
-            //     resultText += newLine;
-            // }
-            //
-            // return resultText.trim();
+            return text.slice(0, maxLineLength);
         }
     }
 }

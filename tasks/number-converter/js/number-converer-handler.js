@@ -23,7 +23,7 @@ function handleDecToBinConverter(numberClass, resultContainerClass){
     const resultContainer = document.getElementsByClassName(resultContainerClass)[0];
     resultContainer.innerHTML = "";
     try{
-        if(number.some(digit => digit.trim().length !== 1)){
+        if(number.some(digit => digit.trim().length !== 1 || isNaN(+digit))){
             throw new InvalidNumberError("Invalid input");
         }
         const result = numberConverter.decimalToBinary(number);

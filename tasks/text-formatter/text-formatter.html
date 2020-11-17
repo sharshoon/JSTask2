@@ -31,9 +31,9 @@
                 <input class="method__input text-formatter__input-max-line" type="number" name="text-formatter-input-text"
                        oninput="clearOutput('text-formatter__result-container')" placeholder="10..." />
                 <select class="method__input text-formatter__select-mode" onchange="clearOutput('text-formatter__result-container')">
-                    <option value="character">Character by character</option>
-                    <option value="word">Word by word</option>
-                    <option value="sentence">Sentence by sentence</option>
+                    <option value="character">Character wrap</option>
+                    <option value="word">Word wrap</option>
+                    <option value="sentence">Sentence wrap</option>
                     <option value="none">None</option>
                 </select>
                 <input class="method__button text-formatter__button"
@@ -45,6 +45,7 @@
             </div>
         </div>
     </main>
+    <script src="../Errors/InvalidArgumentError.js"></script>
     <script src="js/text-formatter.js"></script>
     <script src="../Helpers/clear-output.js"></script>
     <script src="js/text-formatter-handler.js"></script>
