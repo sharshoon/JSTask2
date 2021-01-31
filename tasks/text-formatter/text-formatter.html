@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        mocha.setup('bdd');
+        let assert = chai.assert;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+</head>
+
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">Text Formatter</h1>
+        <div class="method text-formatter">
+            <h2 class="method__name">Format Text</h2>
+            <div class="method__result text-formatter__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Text:</label>
+                <input class="method__input text-formatter__input-text" type="text" name="text-formatter-input-text"
+                       oninput="clearOutput('text-formatter__result-container')" placeholder="text..." />
+                <label>Max text length (optional):</label>
+                <input class="method__input text-formatter__input-max-text" type="number" name="text-formatter-input-text"
+                       oninput="clearOutput('text-formatter__result-container')" placeholder="10..." />
+                <label>Max line length (optional):</label>
+                <input class="method__input text-formatter__input-max-line" type="number" name="text-formatter-input-text"
+                       oninput="clearOutput('text-formatter__result-container')" placeholder="10..." />
+                <select class="method__input text-formatter__select-mode" onchange="clearOutput('text-formatter__result-container')">
+                    <option value="character">Character wrap</option>
+                    <option value="word">Word wrap</option>
+                    <option value="sentence">Sentence wrap</option>
+                    <option value="none">None</option>
+                </select>
+                <input class="method__button text-formatter__button"
+                       type="submit"
+                       onclick="handleTextFormat('text-formatter__input-text', 'text-formatter__input-max-text',
+                       'text-formatter__input-max-line', 'text-formatter__select-mode', 'text-formatter__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+    </main>
+    <script src="../Errors/InvalidArgumentError.js"></script>
+    <script src="js/text-formatter.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
+    <script src="js/text-formatter-handler.js"></script>
+    <script src="js/text-formatter-tests.js"></script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        mocha.setup('bdd');
+        let assert = chai.assert;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css"/>
+</head>
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">Number Converter</h1>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Binary to Decimal</h2>
+            <div class="method__result bin-to-dec__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Number</label>
+                <input class="method__input bin-to-dec__input"type="text" name="bin-to-dec-input"
+                       oninput="clearOutput('bin-to-dec__result-container')" placeholder="1,1"/>
+                <input class="method__button bin-to-dec__button"
+                       type="submit"
+                       onclick="handleBinToDecConverter('bin-to-dec__input', 'bin-to-dec__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Decimal to binary</h2>
+            <div class="method__result dec-to-bin__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Number</label>
+                <input class="method__input dec-to-bin__input"type="text" name="dec-to-bin-input"
+                       oninput="clearOutput('dec-to-bin__result-container')" placeholder="5,1"/>
+                <input class="method__button dec-to-bin__button"
+                       type="submit"
+                       onclick="handleDecToBinConverter('dec-to-bin__input', 'dec-to-bin__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Custom to custom</h2>
+            <div class="method__result custom-converter__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Number</label>
+                <input class="method__input custom-converter__input"type="text" name="custom-converter-input"
+                       oninput="clearOutput('custom-converter__result-container')" placeholder="5,1"/>
+                <label>Source Notation</label>
+                <input class="method__input custom-converter__input-source-notation"type="text"
+                       name="custom-converter-input-source-notation"
+                       oninput="clearOutput('custom-converter__result-container')" placeholder="10"/>
+                <label>Dest Notation</label>
+                <input class="method__input custom-converter__input-dest-notation"type="text"
+                       name="custom-converter-input-dest-notation"
+                       oninput="clearOutput('custom-converter__result-container')" placeholder="16"/>
+                <input class="method__button custom-converter__button"
+                       type="submit"
+                       onclick="handleCustomConverter('custom-converter__input', 'custom-converter__result-container',
+                       'custom-converter__input-source-notation', 'custom-converter__input-dest-notation')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+    </main>
+    <script src="../Errors/InvalidNotationError.js"></script>
+    <script src="../Errors/InvalidArgumentError.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
+    <script src="../Errors/InvalidNumberError.js"></script>
+    <script src="../Errors/InvalidNumberError.js"></script>
+    <script src="js/number-converter.js"></script>
+    <script src="js/number-converer-handler.js"></script>
+    <script src="js/number-converter-tests.js"></script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+</html>

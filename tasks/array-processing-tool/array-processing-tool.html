@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        mocha.setup('bdd');
+        let assert = chai.assert;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+</head>
+
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">Array processing tool</h1>
+        <div class="method max-sum1">
+            <h2 class="method__name">GetMaxSumO1</h2>
+            <div class="method__result max-sum1__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input max-sum1__input" type="text" name="get-max-sum1-input"
+                       oninput="clearOutput('max-sum1__result-container')" placeholder="1,2,3" />
+                <input class="method__button max-sum1__button"
+                       type="submit"
+                       onclick="handleMaxSumO1('max-sum1__input', 'max-sum1__result-container')" \
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+
+        <div class="method max-sum2">
+            <h2 class="method__name">GetMaxSumO2</h2>
+            <div class="method__result max-sum2__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input max-sum2__input" type="text" name="get-max-sum2-input"
+                       oninput="clearOutput('max-sum2__result-container')" placeholder="1,2,3" />
+                <input class="method__button max-sum2__button"
+                       type="submit"
+                       onclick="handleMaxSumO2('max-sum2__input', 'max-sum2__result-container')"
+                       value="SUBMIT" />
+            </div>
+        </div>
+
+        <div class="method find-max">
+            <h2 class="method__name">Find Max</h2>
+            <div class="method__result find-max__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input find-max__input" type="text" name="find-max-input"
+                       oninput="clearOutput('find-max__result-container')" placeholder="1,2,3" />
+                <input class="method__button find-max__button"
+                       type="submit"
+                       onclick="handleFindMax('find-max__input', 'find-max__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+
+        <div class="method find-min">
+            <h2 class="method__name">Find Min</h2>
+            <div class="method__result find-min__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input find-min__input" type="text" name="find-min-input"
+                       oninput="clearOutput('find-min__result-container')" placeholder="1,2,3" />
+                <input class="method__button find-min__button"
+                       type="submit"
+                       onclick="handleFindMin('find-min__input', 'find-min__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+
+        <div class="method find-median">
+            <h2 class="method__name">Find Median</h2>
+            <div class="method__result find-median__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input find-median__input" type="text" name="find-median-input"
+                       oninput="clearOutput('find-median__result-container')" placeholder="1,2,3" />
+                <input class="method__button find-median__button"
+                       type="submit"
+                       onclick="handleFindMedian('find-median__input', 'find-median__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+
+        <div class="method max-sequence">
+            <h2 class="method__name">Max Ascending Sequence</h2>
+            <div class="method__result max-sequence__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input max-sequence__input" type="text" name="max-sequence-input"
+                       oninput="clearOutput('max-sequence__result-container')" placeholder="1,2,3" />
+                <input class="method__button max-sequence__button"
+                       type="submit"
+                       onclick="handleMaxSequence('max-sequence__input', 'max-sequence__result-container')"
+                       value="SUBMIT"
+                />
+            </div>
+        </div>
+    </main>
+    <script src="../Helpers/clear-output.js"></script>
+    <script src="js/array-processing-tool.js"></script>
+    <script src="js/array-tool-form-handler.js"></script>
+    <script src="js/array-processing-tests.js"></script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+
+</html>

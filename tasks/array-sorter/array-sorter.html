@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        mocha.setup('bdd');
+        let assert = chai.assert;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+</head>
+
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">Array sorter</h1>
+
+        <div class="method array-sorter">
+            <h2 class="method__name">Array sorter</h2>
+            <div class="method__result array-sorter__result-container"></div>
+            <div class="method__input-wrapper">
+                <input class="method__input array-sorter__input" type="text" name="get-max-sum1-input" placeholder="1,2,3" />
+                <select class="method__input array-sorter__select-algorithm"
+                        onchange="clearOutput('array-sorter__result-container')">
+                    <option value="bubble-sort">Bubble Sort</option>
+                    <option value="quick-sort">Quick Sort</option>
+                    <option value="heap-sort">Heap Sort</option>
+                    <option value="insertion-sort">Insertion Sort</option>
+                    <option value="selection-sort">Selection Sort</option>
+                </select>
+                <input class="method__button array-sorter__button"
+                       type="submit"
+                       onclick="handleArraySorter('array-sorter__input', 'array-sorter__select-algorithm', 'array-sorter__result-container')"
+                       value="SUBMIT" />
+            </div>
+        </div>
+    </main>
+    <script src="../Helpers/array-helper.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
+    <script src="js/array-sorter-constants.js"></script>
+    <script src="js/array-sorter.js"></script>
+    <script src="js/array-sorter-handler.js"></script>
+    <script src="js/array-sorter-tests.js"></script>
+    <script src="../Errors/InvalidArrayError.js"></script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        mocha.setup('bdd');
+        let assert = chai.assert;
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../styles/styles.css" />
+</head>
+
+<body>
+    <main class="task">
+        <h1 class="task-name task__name">String Calculator</h1>
+
+        <div class="method iso-date">
+            <h2 class="method__name">Calculate ('+', '-', '*', '/' are supported)</h2>
+            <div class="method__result string-calculator__result-container"></div>
+            <div class="method__input-wrapper">
+                <label>Expression:</label>
+                <input class="method__input string-calculator__input-string" type="text"
+                       name="string-calculator-input-string"
+                       oninput="clearOutput('string-calculator__result-container')" placeholder="2+2..." />
+                <input class="method__button string-calculator__button"
+                       type="submit"
+                       onclick="handleStringCalculator('string-calculator__input-string', 'string-calculator__result-container')"
+                       value="SUBMIT" />
+            </div>
+        </div>
+    </main>
+    <script src="js/string-calculator.js"></script>
+    <script src="../Helpers/clear-output.js"></script>
+    <script src="js/string-calculator-handler.js"></script>
+    <script src="js/string-calculator-tests.js"></script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+
+</html>
